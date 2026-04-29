@@ -50,22 +50,8 @@ export function Hero() {
           <Link variant="buttonPrimary" href="/docs/quickstart">
             Quickstart
           </Link>
-          <Link
-            variant="buttonSecondary"
-            href="https://github.com/yuintei/htsx"
-            target="_blank"
-            rel="noreferrer"
-            class="gap-2"
-          >
-            GitHub
-            <span>
-              <span class="hidden dark:block">
-                <GithubWhite />
-              </span>
-              <span class="dark:hidden">
-                <GithubBlack />
-              </span>
-            </span>
+          <Link variant="buttonSecondary" href="/docs/components">
+            See Components
           </Link>
         </div>
       </div>
