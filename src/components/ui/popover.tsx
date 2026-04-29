@@ -43,7 +43,7 @@ export function PopoverSample() {
 
       <Button popovertarget="popover-ssr-sample">SSR Form</Button>
       <Popover id="popover-ssr-sample">
-        <form method="get" action="/docs/popover" class="p-4">
+        <form method="get" action="/docs/popover" class="flex flex-col gap-4 p-8">
           <p>Are you sure to submit this form?</p>
           <div class="flex justify-center gap-4">
             <Button variant="outline" popovertarget="popover-ssr-sample" popovertargetaction="hide">
@@ -56,7 +56,7 @@ export function PopoverSample() {
 
       <Button popovertarget="popover-client-sample">Client Action</Button>
       <Popover id="popover-client-sample">
-        <div class="p-4">
+        <div class="flex flex-col gap-4 p-8">
           <p>Are you sure to click this?</p>
           <div class="flex justify-center gap-4">
             <Button
