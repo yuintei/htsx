@@ -35,7 +35,7 @@ export function List() {
     <div class="not-prose grid w-full items-start gap-4 md:grid-cols-2">
       <Box title="Accordion" href="/docs/accordion">
         <Accordion
-          class="text-sm"
+          class="text-xs"
           defaultOpen={["q2"]}
           items={[
             {
@@ -53,29 +53,29 @@ export function List() {
       </Box>
       <Box title="Button" href="/docs/button">
         <div class="flex flex-wrap items-center gap-2">
-          <Button variant="primary" class="px-2.5 py-1.5 text-xs">
+          <Button variant="primary" class="px-2 py-1 text-xs">
             Primary
           </Button>
-          <Button variant="secondary" class="px-2.5 py-1.5 text-xs">
+          <Button variant="secondary" class="px-2 py-1 text-xs">
             Secondary
           </Button>
-          <Button variant="outline" class="px-2.5 py-1.5 text-xs">
+          <Button variant="outline" class="px-2 py-1 text-xs">
             Outline
           </Button>
-          <Button variant="destructive" class="px-2.5 py-1.5 text-xs">
+          <Button variant="destructive" class="px-2 py-1 text-xs">
             Destructive
           </Button>
-          <Button disabled class="px-2.5 py-1.5 text-xs">
+          <Button disabled class="px-2 py-1 text-xs">
             Disabled
           </Button>
           <Button variant="outline" class="p-1">
             <Copy />
           </Button>
-          <Button variant="primary" class="gap-1 px-2.5 py-1.5 text-xs">
+          <Button variant="primary" class="gap-1 px-2 py-1 text-xs">
             Like
             <ThumbsUp />
           </Button>
-          <Button class="rounded-full bg-orange-400 px-2.5 py-1.5 font-bold text-white italic">
+          <Button class="rounded-full bg-orange-400 px-2 py-1 text-xs font-bold text-white italic">
             Custom
           </Button>
         </div>
@@ -95,19 +95,19 @@ export function List() {
             href="https://github.com/yuintei/htsx"
             target="_blank"
             rel="noreferrer"
-            class="inline-flex gap-1 px-2.5 py-1.5 text-xs"
+            class="inline-flex gap-1 px-2 py-1 text-xs"
           >
             With icon
             <ExternalLink />
           </Link>
 
-          <Link href="/docs/link" variant="buttonPrimary" class="px-2.5 py-1.5 text-xs">
+          <Link href="/docs/link" variant="buttonPrimary" class="px-2 py-1 text-xs">
             Primary
           </Link>
-          <Link href="/docs/link" variant="buttonSecondary" class="px-2.5 py-1.5 text-xs">
+          <Link href="/docs/link" variant="buttonSecondary" class="px-2 py-1 text-xs">
             Secondary
           </Link>
-          <Link href="/docs/link" variant="buttonOutline" class="px-2.5 py-1.5 text-xs">
+          <Link href="/docs/link" variant="buttonOutline" class="px-2 py-1 text-xs">
             Outline
           </Link>
           <Link
@@ -115,7 +115,7 @@ export function List() {
             variant="buttonPrimary"
             target="_blank"
             rel="noreferrer"
-            class="gap-1 px-2.5 py-1.5 text-xs"
+            class="gap-1 px-2 py-1 text-xs"
           >
             With icon
             <ExternalLink />
@@ -123,8 +123,8 @@ export function List() {
         </div>
       </Box>
       <Box title="Popover" href="/docs/popover">
-        <div class="not-prose flex flex-wrap items-center gap-4">
-          <Button popovertarget="popover-menu-sample" class="px-2.5 py-1.5 text-xs">
+        <div class="not-prose flex flex-wrap items-center gap-2">
+          <Button popovertarget="popover-menu-sample" class="px-2 py-1 text-xs">
             Menu
           </Button>
           <Popover id="popover-menu-sample">
@@ -141,7 +141,7 @@ export function List() {
             </div>
           </Popover>
 
-          <Button popovertarget="popover-ssr-sample" class="px-2.5 py-1.5 text-xs">
+          <Button popovertarget="popover-ssr-sample" class="px-2 py-1 text-xs">
             SSR Form
           </Button>
           <Popover id="popover-ssr-sample">
@@ -160,7 +160,7 @@ export function List() {
             </form>
           </Popover>
 
-          <Button popovertarget="popover-client-sample" class="px-2.5 py-1.5 text-xs">
+          <Button popovertarget="popover-client-sample" class="px-2 py-1 text-xs">
             Client Action
           </Button>
           <Popover id="popover-client-sample">
@@ -190,7 +190,7 @@ export function List() {
       <Box title="Tab" href="/docs/tab">
         <Tab
           defaultValue="overview"
-          class="text-sm"
+          class="text-xs"
           items={[
             {
               value: "overview",

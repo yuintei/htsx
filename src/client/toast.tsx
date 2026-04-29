@@ -25,21 +25,21 @@ function ToastSamle() {
 
 function ToastSamleMini() {
   return (
-    <div class="not-prose flex flex-wrap gap-4">
+    <div class="not-prose flex flex-wrap gap-2">
       <Button
-        class="px-2.5 py-1.5 text-xs"
+        class="px-2 py-1 text-xs"
         onClick={() => toast({ status: "success", message: "Success!" })}
       >
         Success
       </Button>
       <Button
-        class="px-2.5 py-1.5 text-xs"
+        class="px-2 py-1 text-xs"
         onClick={() => toast({ status: "error", message: "Error" })}
       >
         Error
       </Button>
       <Button
-        class="px-2.5 py-1.5 text-xs"
+        class="px-2 py-1 text-xs"
         onClick={() =>
           toast({
             status: "success",
