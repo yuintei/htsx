@@ -68,6 +68,9 @@ export function List() {
           <Button disabled class="px-2 py-1 text-xs">
             Disabled
           </Button>
+          <Button type="submit" class="px-2 py-1 text-xs">
+            Submit
+          </Button>
           <Button variant="outline" class="p-1.5">
             <span class="[&>svg]:size-3">
               <Copy />
@@ -163,7 +166,9 @@ export function List() {
                 >
                   Cancel
                 </Button>
-                <Button type="submit">Submit</Button>
+                <Button type="submit" popovertarget="popover-ssr-sample" popovertargetaction="hide">
+                  Submit
+                </Button>
               </div>
             </form>
           </Popover>

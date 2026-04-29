@@ -49,7 +49,9 @@ export function PopoverSample() {
             <Button variant="outline" popovertarget="popover-ssr-sample" popovertargetaction="hide">
               Cancel
             </Button>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" popovertarget="popover-ssr-sample" popovertargetaction="hide">
+              Submit
+            </Button>
           </div>
         </form>
       </Popover>
