@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Accordion } from "./ui/accordion";
-import { Copy, GithubBlack, GithubWhite, ThumbsUp } from "./ui/icons";
+import { Copy, ThumbsUp } from "./ui/icons";
 import { Link } from "./ui/link";
 
 const InfoList: { title: string; description: string }[] = [
