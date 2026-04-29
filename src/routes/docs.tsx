@@ -61,7 +61,7 @@ app.get(
             }),
           )}
         </script>
-        <article class="mx-auto prose max-w-3xl prose-neutral dark:prose-invert prose-img:my-0">
+        <article class="mx-auto prose max-w-3xl prose-neutral dark:prose-invert prose-img:my-0 [&_a[class]:not(.underline)]:no-underline [&_a[class~='hover:underline']:hover]:underline">
           <h1>{title}</h1>
           <p class="lead">{description}</p>
           {children}

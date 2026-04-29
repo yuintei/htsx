@@ -1,6 +1,7 @@
 import { Button } from "./ui/button";
 import { Accordion } from "./ui/accordion";
 import { Copy, GithubBlack, GithubWhite, ThumbsUp } from "./ui/icons";
+import { Link } from "./ui/link";
 
 const InfoList: { title: string; description: string }[] = [
   {
@@ -46,8 +47,16 @@ export function Hero() {
           </p>
         </div>
         <div class="flex gap-4">
-          <Button>Quickstart</Button>
-          <Button variant="secondary" class="gap-2">
+          <Link variant="buttonPrimary" href="/docs/quickstart">
+            Quickstart
+          </Link>
+          <Link
+            variant="buttonSecondary"
+            href="https://github.com/yuintei/htsx"
+            target="_blank"
+            rel="noreferrer"
+            class="gap-2"
+          >
             GitHub
             <span>
               <span class="hidden dark:block">
@@ -57,7 +66,7 @@ export function Hero() {
                 <GithubBlack />
               </span>
             </span>
-          </Button>
+          </Link>
         </div>
       </div>
       <div class="flex flex-wrap items-center gap-4 rounded-md border border-border bg-card p-4">
