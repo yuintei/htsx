@@ -1,0 +1,155 @@
+export const title = "Dark Mode";
+export const description = "Easy way to set up dark mode in Hono projects.";
+export const published = "2026-04-27";
+
+## 1. Add dual theme variants
+
+The below is `Neutral` colorway. You can customize it anytime.
+
+```css title="src/style.css"
+@import "tailwindcss" source("../src");
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+}
+
+:root {
+  color-scheme: light;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --code-line-highlight-bg: oklch(0.94 0.006 264 / 0.9);
+  --code-line-highlight-border: oklch(0.72 0.008 264);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --code-line-highlight-bg: oklch(0.31 0.013 264 / 0.95);
+  --code-line-highlight-border: oklch(0.68 0.015 264);
+}
+```
+
+## Choose your dark mode style
+
+- A. Dual mode (Dark / Light)
+- B. Tri mode (System / Dark / Light)
+
+## A. Dual mode (Dark / Light)
+
+### 1. Add scripts
+
+The first script is runs before first paint to avoid FOUC. The second module runs after the DOM is ready.
+
+```tsx title="renderer.tsx"
+import { html } from "hono/html";
+
+<head>
+  {html`
+    <script>
+      document.documentElement.classList.toggle("dark", localStorage.theme !== "light");
+    </script>
+    <script type="module">
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        localStorage.theme = document.documentElement.classList.toggle("dark") ? "dark" : "light";
+      });
+    </script>
+  `}
+</head>;
+```
+
+### 2. Add switcher (button)
+
+Both icons are always in the DOM. No layout shift occurs.
+
+```tsx title="header.tsx"
+<button id="theme-toggle" type="button" aria-label="Toggle theme">
+  <span class="hidden dark:block">☀️</span>
+  <span class="dark:hidden">🌙</span>
+</button>
+```
+
+## B. Tri mode (System / Dark / Light)
+
+### 1. Add scripts
+
+The first script is runs before first paint to avoid FOUC. The second module runs after the DOM is ready.
+
+```tsx title="renderer.tsx"
+import { html } from "hono/html";
+
+<head>
+  {html`
+    <script>
+      function applyDark() {
+        document.documentElement.classList.toggle(
+          "dark",
+          localStorage.theme === "dark" ||
+            (!("theme" in localStorage) && matchMedia("(prefers-color-scheme: dark)").matches),
+        );
+      }
+      applyDark();
+    </script>
+    <script type="module">
+      const s = document.getElementById("theme-toggle");
+      s.value = localStorage.theme ?? "system";
+      s.addEventListener("change", () => {
+        s.value === "system" ? localStorage.removeItem("theme") : (localStorage.theme = s.value);
+        applyDark();
+      });
+    </script>
+  `}
+</head>;
+```
+
+### 2. Add switcher (select)
+
+```tsx title="header.tsx"
+<select id="theme-toggle" aria-label="Theme">
+  <option value="system">System</option>
+  <option value="light">Light</option>
+  <option value="dark">Dark</option>
+</select>
+```

@@ -1,0 +1,14 @@
+pre-commit:
+  parallel: true
+  commands:
+    oxfmt:
+      glob: "**/*.{ts,tsx,json,css}"
+      run: bun run oxfmt {staged_files}
+      stage_fixed: true
+
+    oxlint:
+      glob: "**/*.{ts,tsx}"
+      run: bun run oxlint --deny-warnings {staged_files}
+
+    typecheck:
+      run: bun run tsc

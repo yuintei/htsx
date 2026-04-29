@@ -1,0 +1,80 @@
+export const title = "Button";
+export const description = "Button components for Hono JSX";
+export const published = "2026-04-27";
+
+import { Button, ButtonSample } from "/src/components/ui/button";
+
+## Examples
+
+<ButtonSample />
+
+```tsx
+// Primary
+<Button variant="primary">Primary</Button>
+
+// Secondary
+<Button variant="secondary">Secondary</Button>
+
+// Outline
+<Button variant="outline">Outline</Button>
+
+// Destructive
+<Button variant="destructive">Destructive</Button>
+
+// Disabled
+<Button disabled>Disabled</Button>
+
+// Form Submit
+<Button type="submit">Submit</Button>
+
+// Icon
+<Button variant="outline" class="p-2.5">
+  <Copy />
+</Button>
+
+// Text + Icon
+<Button variant="primary" class="gap-2">
+  Like
+  <ThumbsUp />
+</Button>
+
+// Custom
+<Button class="rounded-full bg-orange-400 px-8 font-bold text-white italic">Custom</Button>
+```
+
+## Code
+
+```tsx title="ui/button.tsx"
+import type { JSX, Child } from "hono/jsx";
+import { c } from "./c";
+
+export function Button({
+  type = "button",
+  variant = "primary",
+  class: custom,
+  children,
+  ...props
+}: JSX.IntrinsicElements["button"] & {
+  variant?: "primary" | "secondary" | "outline" | "destructive";
+  children?: Child;
+}) {
+  return (
+    <button
+      type={type}
+      class={c(
+        "inline-flex shrink-0 cursor-pointer items-center justify-center rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap transition select-none hover:opacity-80 active:opacity-70 disabled:cursor-not-allowed disabled:opacity-50",
+        {
+          "bg-primary text-primary-foreground": variant === "primary",
+          "bg-secondary text-secondary-foreground": variant === "secondary",
+          "border border-border hover:bg-secondary": variant === "outline",
+          "bg-destructive/20 text-destructive": variant === "destructive",
+        },
+        custom,
+      )}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+```

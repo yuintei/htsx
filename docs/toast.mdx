@@ -1,0 +1,112 @@
+export const title = "Toast";
+export const description = "Toast components for Hono JSX";
+export const published = "2026-04-27";
+
+## Examples
+
+<div id="toast-sample-root"></div>
+{import.meta.env.PROD ? (
+  <script type="module" src="/static/toast.js" />
+) : (
+  <script type="module" src="/src/client/toast.tsx" />
+)}
+
+```tsx
+// Success
+<Button onClick={() => toast({ status: "success", message: "Success!" })}>Success</Button>
+
+// Error
+<Button onClick={() => toast({ status: "error", message: "Error" })}>Error</Button>
+
+// Custom
+<Button
+  onClick={() =>
+    toast({
+      status: "success",
+      message: "The quick brown fox jumps over the lazy dog.",
+      position: "bottom",
+      duration: 8000,
+    })
+  }
+>
+  Custom
+</Button>
+```
+
+## Code
+
+```tsx title="ui/toast.tsx"
+import { render } from "hono/jsx/dom";
+import { CircleAlert, CircleCheck } from "./icons";
+import { c } from "./c";
+
+type Toast = {
+  status: "success" | "error";
+  message: string;
+  position?: "top" | "bottom";
+  duration?: number;
+};
+
+const ICONS = {
+  success: <CircleCheck />,
+  error: <CircleAlert />,
+};
+
+let timer: number;
+
+export function toast({ status, message, position, duration = 2000 }: Toast) {
+  const root = document.getElementById("toast-root");
+  if (!root) return;
+  render(<Toast {...{ message, status, position }} />, root);
+  const el = root.firstElementChild as HTMLElement;
+  el.showPopover?.();
+  clearTimeout(timer);
+  timer = window.setTimeout(() => el.hidePopover?.(), duration);
+}
+
+function Toast({ status = "success", message, position = "top" }: Partial<Toast>) {
+  return (
+    <div
+      popover="manual"
+      class={c(
+        "fixed inset-auto inset-x-4 mx-auto w-fit items-center gap-2 rounded-md border px-3 py-2 transition duration-300 open:flex open:translate-y-0 open:opacity-100 starting:open:translate-y-8 starting:open:opacity-0",
+        {
+          "border-red-300 bg-red-50 text-red-700": status === "error",
+          "border-green-300 bg-green-50 text-green-700": status === "success",
+        },
+        {
+          "top-8": position === "top",
+          "bottom-8": position === "bottom",
+        },
+      )}
+    >
+      <div class="shrink-0">{ICONS[status]}</div>
+      <p class="text-sm font-medium">{message}</p>
+    </div>
+  );
+}
+```
+
+## Usage
+
+```tsx title="renderer.tsx"
+// Place universal toast-root in body. Toast-able from anywhere.
+<body>
+  {/*main*/}
+  <div id="toast-root"></div>
+</body>
+```
+
+```tsx title="client.tsx"
+// Use toast in client
+import { toast } from "../components/ui/toast";
+
+const handleClick = async () => {
+  try {
+    // some action
+    toast({ status: "success", message: "Success" });
+  } catch {
+    toast({ status: "error", message: "Error" });
+  }
+};
+```

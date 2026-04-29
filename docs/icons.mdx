@@ -1,0 +1,50 @@
+export const title = "Icons";
+export const description = "Easy way to use SVG icons with no dependencies.";
+export const published = "2026-04-27";
+
+## 1. Find SVG icons
+
+Lucide is recommended.
+https://lucide.dev/icons/
+
+## 2. Copy SVG
+
+Press `Copy SVG` button on Lucide.
+
+## 3. Paste it and export it
+
+Paste SVG in `ui/icons.tsx` and export it as Hono JSX component.
+
+- No need to deal with `<img>` tags or raw SVG files.
+- No need to install `lucide` package as dependancy.
+- Easily customize `class`, styles or colors.
+- Better readability than inline SVGs.
+
+```tsx title="ui/icons.tsx"
+export const Check = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="lucide lucide-check-icon lucide-check"
+  >
+    <path d="M20 6 9 17l-5-5" />
+  </svg>
+);
+```
+
+## 4. Use it
+
+Import and use it as JSX component.
+
+```tsx title="todo.tsx"
+import { Check } from "./icons";
+
+<Check />;
+```
