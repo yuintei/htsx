@@ -68,12 +68,16 @@ export function List() {
           <Button disabled class="px-2 py-1 text-xs">
             Disabled
           </Button>
-          <Button variant="outline" class="p-1">
-            <Copy />
+          <Button variant="outline" class="p-1.5">
+            <span class="[&>svg]:size-3">
+              <Copy />
+            </span>
           </Button>
           <Button variant="primary" class="gap-1 px-2 py-1 text-xs">
             Like
-            <ThumbsUp />
+            <span class="[&>svg]:size-3">
+              <ThumbsUp />
+            </span>
           </Button>
           <Button class="rounded-full bg-orange-400 px-2 py-1 text-xs font-bold text-white italic">
             Custom
@@ -95,10 +99,12 @@ export function List() {
             href="https://github.com/yuintei/htsx"
             target="_blank"
             rel="noreferrer"
-            class="inline-flex gap-1 px-2 py-1 text-xs"
+            class="gap-1 px-2 py-1 text-xs"
           >
             With icon
-            <ExternalLink />
+            <span class="[&>svg]:size-3">
+              <ExternalLink />
+            </span>
           </Link>
 
           <Link href="/docs/link" variant="buttonPrimary" class="px-2 py-1 text-xs">
@@ -118,7 +124,9 @@ export function List() {
             class="gap-1 px-2 py-1 text-xs"
           >
             With icon
-            <ExternalLink />
+            <span class="[&>svg]:size-3">
+              <ExternalLink />
+            </span>
           </Link>
         </div>
       </Box>
