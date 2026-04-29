@@ -2,6 +2,7 @@
 @plugin "@tailwindcss/typography";
 @import "@fontsource/jetbrains-mono/latin-400.css";
 @import "@fontsource/jetbrains-mono/latin-400-italic.css";
+@import "./shiki.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -66,121 +67,7 @@
 }
 
 @layer components {
-  pre {
-    font-family: "JetBrains Mono", monospace;
-  }
-
-  /*svg*/
-  svg {
+  svg[class*="lucide"] {
     @apply size-4;
-  }
-
-  /*inline code*/
-  :not(pre) > code::before,
-  :not(pre) > code::after {
-    @apply hidden;
-  }
-  :not(pre) > code {
-    @apply rounded-md border p-1 text-xs! font-normal!;
-    border-color: var(--border);
-    background-color: var(--secondary);
-    color: var(--foreground);
-  }
-
-  /*code block header*/
-  figcaption {
-    @apply relative top-1 rounded-t-md px-2 pt-2 pb-3;
-    border: 1px solid var(--border);
-    border-bottom: 0;
-    background-color: var(--muted);
-    color: var(--foreground) !important;
-  }
-
-  /*code block*/
-  pre {
-    @apply relative overflow-x-auto;
-    border: 1px solid var(--border);
-    color: var(--foreground);
-  }
-
-  pre code {
-    background-color: transparent !important;
-  }
-
-  /* rehype-pretty-code dual theme */
-  pre[data-theme*=" "],
-  pre[data-theme*=" "] code,
-  code[data-theme*=" "] {
-    background-color: var(--shiki-light-bg, var(--background)) !important;
-    color: var(--shiki-light, var(--foreground)) !important;
-  }
-
-  pre[data-theme*=" "] span,
-  code[data-theme*=" "] span {
-    background-color: transparent !important;
-    color: var(--shiki-light, var(--foreground)) !important;
-  }
-
-  pre[data-theme*=" "] [data-highlighted-line] {
-    background-color: var(--code-line-highlight-bg) !important;
-  }
-
-  .dark code[data-theme*=" "],
-  .dark pre[data-theme*=" "],
-  .dark pre[data-theme*=" "] code,
-  .dark code[data-theme*=" "] span {
-    background-color: var(--shiki-dark-bg, var(--background)) !important;
-    color: var(--shiki-dark, var(--foreground)) !important;
-  }
-
-  .dark pre[data-theme*=" "] span {
-    background-color: transparent !important;
-    color: var(--shiki-dark, var(--foreground)) !important;
-  }
-
-  .dark pre[data-theme*=" "] [data-highlighted-line] {
-    background-color: var(--code-line-highlight-bg) !important;
-  }
-
-  figcaption + pre {
-    @apply rounded-t-none!;
-  }
-
-  /*code file name*/
-  figcaption[data-rehype-pretty-code-title] {
-    @apply font-mono! text-xs!;
-  }
-
-  /*code copy button*/
-  .copy-button {
-    @apply absolute top-2 right-2;
-    color: var(--muted-foreground);
-  }
-
-  /*code line highlight*/
-  span[data-highlighted-line] {
-    @apply -mx-4 border-l-4 pl-3;
-    border-left-color: var(--code-line-highlight-border);
-    background-color: var(--code-line-highlight-bg);
-  }
-
-  /*code line numbers*/
-  code[data-line-numbers] {
-    counter-reset: line;
-  }
-  code[data-line-numbers] > [data-line]::before {
-    counter-increment: line;
-    content: counter(line);
-    @apply mr-8 inline-block w-3 text-right;
-    color: var(--muted-foreground);
-  }
-  code[data-line-numbers-max-digits="2"] > [data-line]::before {
-    @apply w-5;
-  }
-  code[data-line-numbers-max-digits="3"] > [data-line]::before {
-    @apply w-7;
-  }
-  code[data-line-numbers-max-digits="4"] > [data-line]::before {
-    @apply w-9;
   }
 }

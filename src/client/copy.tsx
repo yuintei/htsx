@@ -17,8 +17,8 @@ function CopyButton({ code }: { code: HTMLElement }) {
   return (
     <Button
       type="button"
-      variant="outline"
-      class="copy-button p-1.5"
+      variant="secondary"
+      class="copy-button p-1.5 text-muted-foreground"
       onClick={copy}
       aria-label={copied ? "Copied code" : "Copy code"}
     >
@@ -30,5 +30,11 @@ function CopyButton({ code }: { code: HTMLElement }) {
 document.querySelectorAll("pre").forEach((pre) => {
   const code = pre.querySelector("code");
   if (!code) return;
-  render(<CopyButton code={code} />, pre.appendChild(document.createElement("div")));
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "code-block-wrapper";
+  pre.parentNode?.insertBefore(wrapper, pre);
+  wrapper.appendChild(pre);
+
+  render(<CopyButton code={code} />, wrapper.appendChild(document.createElement("div")));
 });

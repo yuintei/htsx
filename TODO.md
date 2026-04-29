@@ -1,9 +1,6 @@
 ## v1.0
 
-- link
-- accordion
 - spinner
-- tabs
 - badge
 - breadcrumb
 - form
