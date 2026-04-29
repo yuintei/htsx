@@ -48,3 +48,23 @@ import { Check } from "./icons";
 
 <Check />;
 ```
+
+## 5. Customize
+
+You can change the size globally.
+
+```css title="style.css"
+@layer components {
+  svg[class*="lucide"] {
+    @apply size-4;
+  }
+}
+```
+
+You can change the size per use.
+
+```tsx title="hoge.tsx"
+<span class="[&>svg]:size-3">
+  <Copy />
+</span>
+```
