@@ -2,10 +2,11 @@ import type { Child, JSX } from "hono/jsx";
 import { Accordion } from "./ui/accordion";
 import { Button } from "./ui/button";
 import { c } from "./ui/c";
-import { Copy, ExternalLink, ThumbsUp } from "./ui/icons";
+import { ChevronRight, Copy, ExternalLink, ThumbsUp } from "./ui/icons";
 import { Link } from "./ui/link";
 import { Popover } from "./ui/popover";
 import { Tab } from "./ui/tab";
+import { Dropdown } from "./ui/dropdown";
 
 function Box({
   title,
@@ -85,6 +86,186 @@ export function List() {
           <Button class="rounded-full bg-orange-400 px-2 py-1 text-xs font-bold text-white italic">
             Custom
           </Button>
+        </div>
+      </Box>
+      <Box title="Dropdown" href="/docs/dropdown">
+        <div class="not-prose flex flex-col gap-4">
+          <div class="flex flex-wrap items-center gap-4">
+            <Button popovertarget="dropdown-menu-sample" class="px-2 py-1 text-xs">
+              Menu
+            </Button>
+            <Dropdown id="dropdown-menu-sample">
+              <div class="flex flex-col">
+                <a href="/" class="rounded px-3 py-2 text-sm hover:bg-secondary">
+                  Home
+                </a>
+                <a href="/docs/button" class="rounded px-3 py-2 text-sm hover:bg-secondary">
+                  Button
+                </a>
+                <button
+                  type="button"
+                  popovertarget="dropdown-menu-sample"
+                  popovertargetaction="hide"
+                  class="rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+                >
+                  Close
+                </button>
+              </div>
+            </Dropdown>
+
+            <Button
+              popovertarget="dropdown-actions-sample"
+              class="px-2 py-1 text-xs"
+              variant="outline"
+            >
+              Actions
+            </Button>
+            <Dropdown id="dropdown-actions-sample" align="end">
+              <div class="flex flex-col">
+                <button
+                  type="button"
+                  popovertarget="dropdown-actions-sample"
+                  popovertargetaction="hide"
+                  onclick="alert('Archived')"
+                  class="rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+                >
+                  Archive
+                </button>
+                <button
+                  type="button"
+                  popovertarget="dropdown-actions-sample"
+                  popovertargetaction="hide"
+                  onclick="alert('Duplicated')"
+                  class="rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+                >
+                  Duplicate
+                </button>
+                <button
+                  type="button"
+                  popovertarget="dropdown-actions-sample"
+                  popovertargetaction="hide"
+                  class="rounded px-3 py-2 text-left text-sm text-destructive hover:bg-secondary"
+                >
+                  Delete
+                </button>
+              </div>
+            </Dropdown>
+
+            <Button
+              popovertarget="dropdown-custom-sample"
+              class="px-2 py-1 text-xs"
+              variant="outline"
+            >
+              Nested
+            </Button>
+            <Dropdown id="dropdown-custom-sample" side="bottom">
+              <button
+                type="button"
+                popovertarget="dropdown-custom-nested-sample"
+                class="w-full rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+              >
+                <div class="flex items-center justify-between">
+                  <span>Open Nested</span>
+                  <ChevronRight />
+                </div>
+              </button>
+              <button
+                type="button"
+                popovertarget="dropdown-custom-sample"
+                popovertargetaction="hide"
+                class="w-full rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+              >
+                Close
+              </button>
+              <Dropdown id="dropdown-custom-nested-sample" side="right" align="center">
+                <button
+                  type="button"
+                  popovertarget="dropdown-custom-sample"
+                  popovertargetaction="hide"
+                  class="w-full rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+                >
+                  Nested
+                </button>
+              </Dropdown>
+            </Dropdown>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <Button
+              popovertarget="dropdown-align-start-sample"
+              class="px-2 py-1 text-xs"
+              variant="secondary"
+            >
+              Start
+            </Button>
+            <Dropdown id="dropdown-align-start-sample" align="start">
+              <p class="px-3 py-2 text-sm">Aligned to start</p>
+            </Dropdown>
+
+            <Button
+              popovertarget="dropdown-align-center-sample"
+              class="px-2 py-1 text-xs"
+              variant="secondary"
+            >
+              Center
+            </Button>
+            <Dropdown id="dropdown-align-center-sample" align="center">
+              <p class="px-3 py-2 text-sm">Aligned to center</p>
+            </Dropdown>
+
+            <Button
+              popovertarget="dropdown-align-end-sample"
+              class="px-2 py-1 text-xs"
+              variant="secondary"
+            >
+              End
+            </Button>
+            <Dropdown id="dropdown-align-end-sample" align="end">
+              <p class="px-3 py-2 text-sm">Aligned to end</p>
+            </Dropdown>
+
+            <Button
+              popovertarget="dropdown-side-top-sample"
+              class="px-2 py-1 text-xs"
+              variant="outline"
+            >
+              Top
+            </Button>
+            <Button
+              popovertarget="dropdown-side-right-sample"
+              class="px-2 py-1 text-xs"
+              variant="outline"
+            >
+              Right
+            </Button>
+            <Button
+              popovertarget="dropdown-side-left-sample"
+              class="px-2 py-1 text-xs"
+              variant="outline"
+            >
+              Left
+            </Button>
+            <Button
+              popovertarget="dropdown-side-bottom-sample"
+              class="px-2 py-1 text-xs"
+              variant="outline"
+            >
+              Bottom
+            </Button>
+
+            <Dropdown id="dropdown-side-top-sample" side="top" align="center">
+              <p class="px-3 py-2 text-sm">Top side</p>
+            </Dropdown>
+            <Dropdown id="dropdown-side-right-sample" side="right" align="center">
+              <p class="px-3 py-2 text-sm">Right side</p>
+            </Dropdown>
+            <Dropdown id="dropdown-side-bottom-sample" side="bottom" align="center">
+              <p class="px-3 py-2 text-sm">Bottom side</p>
+            </Dropdown>
+            <Dropdown id="dropdown-side-left-sample" side="left" align="center">
+              <p class="px-3 py-2 text-sm">Left side</p>
+            </Dropdown>
+          </div>
         </div>
       </Box>
       <Box title="Link" href="/docs/link">
