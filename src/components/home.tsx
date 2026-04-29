@@ -1,6 +1,4 @@
-import { Button } from "./ui/button";
 import { Accordion } from "./ui/accordion";
-import { Copy, ThumbsUp } from "./ui/icons";
 import { Link } from "./ui/link";
 
 const InfoList: { title: string; description: string }[] = [
@@ -37,53 +35,21 @@ const FaqList: { value: string; title: string; content: string }[] = [
 
 export function Hero() {
   return (
-    <div class="grid gap-16 md:grid-cols-2">
-      <div class="flex flex-col gap-8">
-        <div class="flex flex-col gap-4">
-          <h1 class="text-4xl font-bold">Simple UI toolkit for Hono</h1>
-          <p class="text-xl font-medium text-muted-foreground">
-            Fullstack Hono apps, made easy and fun!
-            <br /> Free and Open source.
-          </p>
-        </div>
-        <div class="flex gap-4">
-          <Link variant="buttonPrimary" href="/docs/quickstart">
-            Quickstart
-          </Link>
-          <Link variant="buttonSecondary" href="/docs/components">
-            See Components
-          </Link>
-        </div>
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-4">
+        <h1 class="text-4xl font-bold">Simple UI toolkit for Hono</h1>
+        <p class="text-xl font-medium text-muted-foreground">
+          Fullstack Hono apps, made easy and fun!
+          <br /> Free and Open source.
+        </p>
       </div>
-      <div class="flex flex-wrap items-center gap-4 rounded-md border border-border bg-card p-4">
-        <Button variant="primary" class="px-2.5 py-1.5 text-xs">
-          Primary
-        </Button>
-        <Button variant="secondary" class="px-2.5 py-1.5 text-xs">
-          Secondary
-        </Button>
-        <Button variant="outline" class="px-2.5 py-1.5 text-xs">
-          Outline
-        </Button>
-        <Button variant="destructive" class="px-2.5 py-1.5 text-xs">
-          Destructive
-        </Button>
-        <Button disabled class="px-2.5 py-1.5 text-xs">
-          Disabled
-        </Button>
-        <Button type="submit" class="px-2.5 py-1.5 text-xs">
-          Submit
-        </Button>
-        <Button variant="outline" class="p-1">
-          <Copy />
-        </Button>
-        <Button variant="primary" class="gap-1 px-2.5 py-1.5 text-xs">
-          Like
-          <ThumbsUp />
-        </Button>
-        <Button class="rounded-full bg-orange-400 px-2.5 py-1.5 font-bold text-white italic">
-          Custom
-        </Button>
+      <div class="flex gap-4">
+        <Link variant="buttonPrimary" href="/docs/quickstart">
+          Quickstart
+        </Link>
+        <Link variant="buttonSecondary" href="/docs/components">
+          See Components
+        </Link>
       </div>
     </div>
   );
@@ -103,5 +69,12 @@ export function Info() {
 }
 
 export function Faq() {
-  return <Accordion variant="multiple" defaultOpen={["1", "2"]} items={FaqList} />;
+  return (
+    <Accordion
+      variant="multiple"
+      class="rounded-md border border-border bg-card text-card-foreground"
+      defaultOpen={["1", "2"]}
+      items={FaqList}
+    />
+  );
 }

@@ -5,7 +5,7 @@ const app = new Hono();
 
 app.get("/", async (c) => {
   return c.render(
-    <div class="flex flex-col gap-16">
+    <div class="flex flex-col gap-12">
       <Hero />
       <Info />
       <Faq />
