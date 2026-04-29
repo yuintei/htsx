@@ -1,4 +1,5 @@
 import { Button } from "./ui/button";
+import { Accordion } from "./ui/accordion";
 import { Copy, GithubBlack, GithubWhite, ThumbsUp } from "./ui/icons";
 
 const InfoList: { title: string; description: string }[] = [
@@ -20,14 +21,16 @@ const InfoList: { title: string; description: string }[] = [
   },
 ];
 
-const FaqList: { q: string; a: string }[] = [
+const FaqList: { value: string; title: string; content: string }[] = [
   {
-    q: "Can my AI agent use htsx?",
-    a: "Yes. llms.txt is available.",
+    value: "1",
+    title: "Can my AI agent use htsx?",
+    content: "Yes. llms.txt is available.",
   },
   {
-    q: "Can I add components to htsx?",
-    a: "Yes. See contribution guide.",
+    value: "2",
+    title: "Can I add components to htsx?",
+    content: "Yes. See contribution guide.",
   },
 ];
 
@@ -105,16 +108,5 @@ export function Info() {
 }
 
 export function Faq() {
-  return (
-    <div>
-      <dl class="divide-y divide-border">
-        {FaqList.map(({ q, a }) => (
-          <details key={q} open class="group py-4">
-            <summary class="cursor-pointer font-semibold">{q}</summary>
-            <p class="mt-2 text-muted-foreground">{a}</p>
-          </details>
-        ))}
-      </dl>
-    </div>
-  );
+  return <Accordion variant="multiple" defaultOpen={["1", "2"]} items={FaqList} />;
 }
