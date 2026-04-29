@@ -118,7 +118,7 @@ export function Accordion({
 }) {
   const groupName = variant === "single" ? (id ?? crypto.randomUUID()) : undefined;
   return (
-    <div id={id} class={c("divide-y divide-border", custom)} {...props}>
+    <div id={id} class={c("w-full divide-y divide-border", custom)} {...props}>
       {items.map((item) => (
         <details
           key={item.value}

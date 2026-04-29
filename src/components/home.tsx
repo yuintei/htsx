@@ -69,12 +69,5 @@ export function Info() {
 }
 
 export function Faq() {
-  return (
-    <Accordion
-      variant="multiple"
-      class="rounded-md border border-border bg-card text-card-foreground"
-      defaultOpen={["1", "2"]}
-      items={FaqList}
-    />
-  );
+  return <Accordion variant="multiple" defaultOpen={["1", "2"]} items={FaqList} />;
 }

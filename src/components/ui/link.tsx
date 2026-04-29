@@ -44,46 +44,42 @@ export function Link({
 export function LinkSample() {
   return (
     <div class="not-prose flex flex-wrap items-center gap-4">
-      <div class="flex flex-wrap items-center gap-4">
-        <Link href="/docs/link">Text</Link>
-        <Link href="/docs/link" variant="underline">
-          Underline
-        </Link>
-        <Link href="/docs/link" variant="muted">
-          Muted
-        </Link>
-        <Link
-          href="https://github.com/yuintei/htsx"
-          target="_blank"
-          rel="noreferrer"
-          class="inline-flex items-center gap-1"
-        >
-          With icon
-          <ExternalLink />
-        </Link>
-      </div>
+      <Link href="/docs/link">Text</Link>
+      <Link href="/docs/link" variant="underline">
+        Underline
+      </Link>
+      <Link href="/docs/link" variant="muted">
+        Muted
+      </Link>
+      <Link
+        href="https://github.com/yuintei/htsx"
+        target="_blank"
+        rel="noreferrer"
+        class="inline-flex items-center gap-1"
+      >
+        With icon
+        <ExternalLink />
+      </Link>
 
-      <div class="flex flex-wrap items-center gap-4">
-        <Link href="/docs/link" variant="buttonPrimary">
-          Primary
-        </Link>
-        <Link href="/docs/link" variant="buttonSecondary">
-          Secondary
-        </Link>
-        <Link href="/docs/link" variant="buttonOutline">
-          Outline
-        </Link>
-        <Link
-          href="https://github.com/yuintei/htsx"
-          variant="buttonPrimary"
-          target="_blank"
-          rel="noreferrer"
-          class="gap-2"
-        >
-          With icon
-          <ExternalLink />
-        </Link>
-      </div>
+      <Link href="/docs/link" variant="buttonPrimary">
+        Primary
+      </Link>
+      <Link href="/docs/link" variant="buttonSecondary">
+        Secondary
+      </Link>
+      <Link href="/docs/link" variant="buttonOutline">
+        Outline
+      </Link>
+      <Link
+        href="https://github.com/yuintei/htsx"
+        variant="buttonPrimary"
+        target="_blank"
+        rel="noreferrer"
+        class="gap-2"
+      >
+        With icon
+        <ExternalLink />
+      </Link>
     </div>
   );
 }
