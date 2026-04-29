@@ -1,0 +1,138 @@
+export const title = "Dropdown";
+export const description = "Dropdown component for Hono JSX";
+export const published = "2026-04-30";
+
+import { DropdownSample } from "/src/components/ui/dropdown";
+import { Button } from "/src/components/ui/button";
+
+## Examples
+
+<DropdownSample />
+
+```tsx
+// Menu
+<Button popovertarget="dropdown-menu-sample">Menu</Button>
+<Dropdown id="dropdown-menu-sample">
+  <div class="flex flex-col">
+    <a href="/">
+      Home
+    </a>
+    {/*more menu*/}
+  </div>
+</Dropdown>
+
+// Actions
+<Button popovertarget="dropdown-actions-sample" variant="outline">
+  Actions
+</Button>
+<Dropdown id="dropdown-actions-sample" align="end">
+  <div class="flex flex-col">
+    <button
+      popovertarget="dropdown-actions-sample"
+      popovertargetaction="hide"
+      onclick="alert('Archived')"
+    >
+      Archive
+    </button>
+    {/*more actions*/}
+  </div>
+</Dropdown>
+
+// Nested
+<Button popovertarget="dropdown-custom-sample">
+  Nested
+</Button>
+<Dropdown id="dropdown-custom-sample" side="bottom">
+  <button
+    popovertarget="dropdown-custom-nested-sample"
+  >
+    <div>
+      <span>Open Nested</span>
+      <ChevronRight />
+    </div>
+  </button>
+  <button
+    popovertarget="dropdown-custom-sample"
+    popovertargetaction="hide"
+  >
+    Close
+  </button>
+  <Dropdown id="dropdown-custom-nested-sample" side="right" align="center">
+    <button
+      popovertarget="dropdown-custom-sample"
+      popovertargetaction="hide"
+    >
+      Nested
+    </button>
+  </Dropdown>
+</Dropdown>
+
+// Align
+<Button popovertarget="dropdown-align-start-sample">
+  Start
+</Button>
+<Dropdown id="dropdown-align-start-sample" align="start">
+  <p>Aligned to start</p>
+</Dropdown>
+
+// Side
+<Button popovertarget="dropdown-side-top-sample" variant="outline">
+  Top
+</Button>
+<Dropdown id="dropdown-side-top-sample" side="top" align="center">
+  <p>Top side</p>
+</Dropdown>
+```
+
+## Code
+
+```tsx title="ui/dropdown.tsx"
+import type { Child, JSX } from "hono/jsx";
+import { c } from "./c";
+
+export function Dropdown({
+  id,
+  side = "bottom",
+  align = "start",
+  popover = "auto",
+  class: custom,
+  children,
+  ...props
+}: JSX.IntrinsicElements["div"] & {
+  id: string;
+  side?: "top" | "right" | "bottom" | "left";
+  align?: "start" | "center" | "end";
+  children?: Child;
+}) {
+  const vertical = side === "top" || side === "bottom";
+  const horizontal = side === "right" || side === "left";
+
+  return (
+    <div
+      id={id}
+      popover={popover}
+      class={c(
+        "inset-auto rounded-md border border-border bg-card p-1 text-card-foreground shadow-md",
+        {
+          "bottom-[anchor(top)] mb-1": side === "top",
+          "left-[anchor(right)] ml-1": side === "right",
+          "top-[anchor(bottom)] mt-1": side === "bottom",
+          "right-[anchor(left)] mr-1": side === "left",
+        },
+        {
+          "left-[anchor(left)]": vertical && align === "start",
+          "left-[anchor(center)] -translate-x-1/2": vertical && align === "center",
+          "right-[anchor(right)]": vertical && align === "end",
+          "top-[anchor(top)]": horizontal && align === "start",
+          "top-[anchor(center)] -translate-y-1/2": horizontal && align === "center",
+          "bottom-[anchor(bottom)]": horizontal && align === "end",
+        },
+        custom,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+```
