@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { Faq, Hero, Info } from "../components/home";
+import { List } from "../components/list";
 
 const app = new Hono();
 
@@ -9,6 +10,8 @@ app.get("/", async (c) => {
       <Hero />
       <Info />
       <Faq />
+      <hr class="border-border" />
+      <List />
     </div>,
     {
       metaData: { title: "Home" },

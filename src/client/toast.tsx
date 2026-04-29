@@ -23,5 +23,40 @@ function ToastSamle() {
   );
 }
 
+function ToastSamleMini() {
+  return (
+    <div class="not-prose flex flex-wrap gap-4">
+      <Button
+        class="px-2.5 py-1.5 text-xs"
+        onClick={() => toast({ status: "success", message: "Success!" })}
+      >
+        Success
+      </Button>
+      <Button
+        class="px-2.5 py-1.5 text-xs"
+        onClick={() => toast({ status: "error", message: "Error" })}
+      >
+        Error
+      </Button>
+      <Button
+        class="px-2.5 py-1.5 text-xs"
+        onClick={() =>
+          toast({
+            status: "success",
+            message: "The quick brown fox jumps over the lazy dog.",
+            position: "bottom",
+            duration: 8000,
+          })
+        }
+      >
+        Custom
+      </Button>
+    </div>
+  );
+}
+
 const root = document.getElementById("toast-sample-root");
 if (root) render(<ToastSamle />, root);
+
+const miniRoot = document.getElementById("toast-sample-mini-root");
+if (miniRoot) render(<ToastSamleMini />, miniRoot);
