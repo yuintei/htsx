@@ -56,6 +56,7 @@ import { Accordion, AccordionSample } from "/src/components/ui/accordion";
 
 // title and content accept JSX
 <Accordion
+  class="rounded-md border border-border bg-card text-card-foreground"
   items={[
     {
       value: "jsx1",
@@ -117,14 +118,7 @@ export function Accordion({
 }) {
   const groupName = variant === "single" ? (id ?? crypto.randomUUID()) : undefined;
   return (
-    <div
-      id={id}
-      class={c(
-        "divide-y divide-border rounded-md border border-border bg-card text-card-foreground",
-        custom,
-      )}
-      {...props}
-    >
+    <div id={id} class={c("divide-y divide-border", custom)} {...props}>
       {items.map((item) => (
         <details
           key={item.value}
@@ -132,13 +126,13 @@ export function Accordion({
           open={defaultOpen.includes(item.value) || undefined}
           class="group/accordion-item"
         >
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-3 py-2 font-medium select-none hover:opacity-80">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 font-medium select-none hover:opacity-80">
             {item.title}
             <span class="shrink-0 text-muted-foreground transition-transform group-open/accordion-item:rotate-180">
               <ChevronDown />
             </span>
           </summary>
-          <div class="px-3 pb-4 text-muted-foreground">{item.content}</div>
+          <div class="px-4 pb-4 text-muted-foreground">{item.content}</div>
         </details>
       ))}
     </div>
