@@ -4,7 +4,7 @@ import { Button } from "../components/ui/button";
 
 function ToastSamle() {
   return (
-    <div class="flex gap-4">
+    <div class="not-prose flex flex-wrap gap-4">
       <Button onClick={() => toast({ status: "success", message: "Success!" })}>Success</Button>
       <Button onClick={() => toast({ status: "error", message: "Error" })}>Error</Button>
       <Button

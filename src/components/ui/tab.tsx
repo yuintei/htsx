@@ -42,7 +42,7 @@ export function Tab({
 
 export function TabSample() {
   return (
-    <div class="flex flex-col gap-8">
+    <div class="not-prose grid items-start gap-4 sm:grid-cols-2">
       <Tab
         defaultValue="overview"
         items={[

@@ -29,7 +29,7 @@ export function Popover({
 
 export function PopoverSample() {
   return (
-    <div class="flex flex-wrap items-center gap-4">
+    <div class="not-prose flex flex-wrap items-center gap-4">
       <Button popovertarget="popover-menu-sample">Menu</Button>
       <Popover id="popover-menu-sample">
         <div class="flex flex-col items-center gap-4 p-8">

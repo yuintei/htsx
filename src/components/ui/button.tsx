@@ -34,7 +34,7 @@ export function Button({
 
 export function ButtonSample() {
   return (
-    <div class="flex flex-wrap items-center gap-4">
+    <div class="not-prose flex flex-wrap items-center gap-4">
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="outline">Outline</Button>

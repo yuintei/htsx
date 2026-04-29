@@ -43,7 +43,7 @@ export function Accordion({
 
 export function AccordionSample() {
   return (
-    <div class="flex flex-col gap-8">
+    <div class="not-prose grid items-start gap-4 sm:grid-cols-2">
       <Accordion
         defaultOpen={["q1"]}
         items={[

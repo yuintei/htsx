@@ -43,7 +43,7 @@ export function Link({
 
 export function LinkSample() {
   return (
-    <div class="flex flex-col gap-6">
+    <div class="not-prose flex flex-wrap items-center gap-4">
       <div class="flex flex-wrap items-center gap-4">
         <Link href="/docs/link">Text</Link>
         <Link href="/docs/link" variant="underline">
