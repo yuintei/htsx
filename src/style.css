@@ -71,7 +71,7 @@
   }
 
   /*svg*/
-  svg {
+  svg[class*="lucide"] {
     @apply size-4;
   }
 
