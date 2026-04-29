@@ -18,7 +18,7 @@ export function Link({
   return (
     <a
       class={c(
-        "transition hover:opacity-80 active:opacity-70",
+        "inline-flex items-center transition hover:opacity-80 active:opacity-70",
         {
           "font-medium text-primary underline-offset-4 hover:underline": variant === "text",
           "font-medium text-primary underline underline-offset-4": variant === "underline",
@@ -26,7 +26,7 @@ export function Link({
             variant === "muted",
         },
         buttonStyle &&
-          "inline-flex shrink-0 cursor-pointer items-center justify-center rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap select-none",
+          "shrink-0 justify-center rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap select-none",
         {
           "bg-primary text-primary-foreground": variant === "buttonPrimary",
           "bg-secondary text-secondary-foreground": variant === "buttonSecondary",
