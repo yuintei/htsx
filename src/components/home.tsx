@@ -1,7 +1,8 @@
+import type { Child } from "hono/jsx";
 import { Accordion } from "./ui/accordion";
 import { Link } from "./ui/link";
 
-const InfoList: { title: string; description: string }[] = [
+const InfoList: { title: Child; description: Child }[] = [
   {
     title: "hono/jsx native",
     description: "Works in SSR and client.",
@@ -20,11 +21,19 @@ const InfoList: { title: string; description: string }[] = [
   },
 ];
 
-const FaqList: { value: string; title: string; content: string }[] = [
+const FaqList: { value: string; title: Child; content: Child }[] = [
   {
     value: "1",
     title: "Can my AI agent use htsx?",
-    content: "Yes. llms.txt is available.",
+    content: (
+      <p>
+        Yes.{" "}
+        <Link href="/llms.txt" target="_blank" variant="underline">
+          llms.txt
+        </Link>{" "}
+        is available.
+      </p>
+    ),
   },
   {
     value: "2",
