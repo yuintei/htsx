@@ -5,9 +5,14 @@ import { Button } from "../components/ui/button";
 function ToastSamle() {
   return (
     <div class="not-prose flex flex-wrap gap-4">
-      <Button onClick={() => toast({ status: "success", message: "Success!" })}>Success</Button>
-      <Button onClick={() => toast({ status: "error", message: "Error" })}>Error</Button>
+      <Button variant="primary" onClick={() => toast({ status: "success", message: "Success!" })}>
+        Success
+      </Button>
+      <Button variant="secondary" onClick={() => toast({ status: "error", message: "Error" })}>
+        Error
+      </Button>
       <Button
+        variant="outline"
         onClick={() =>
           toast({
             status: "success",
@@ -27,18 +32,21 @@ function ToastSamleMini() {
   return (
     <div class="not-prose flex flex-wrap gap-2">
       <Button
+        variant="primary"
         class="px-2 py-1 text-xs"
         onClick={() => toast({ status: "success", message: "Success!" })}
       >
         Success
       </Button>
       <Button
+        variant="secondary"
         class="px-2 py-1 text-xs"
         onClick={() => toast({ status: "error", message: "Error" })}
       >
         Error
       </Button>
       <Button
+        variant="outline"
         class="px-2 py-1 text-xs"
         onClick={() =>
           toast({

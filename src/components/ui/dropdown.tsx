@@ -25,7 +25,7 @@ export function Dropdown({
       id={id}
       popover={popover}
       class={c(
-        "inset-auto rounded-md border border-border bg-card p-1 text-card-foreground shadow-md",
+        "inset-auto rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-md",
         {
           "bottom-[anchor(top)] mb-1": side === "top",
           "left-[anchor(right)] ml-1": side === "right",
@@ -53,27 +53,29 @@ export function DropdownSample() {
   return (
     <div class="not-prose flex flex-col gap-4">
       <div class="flex flex-wrap items-center gap-4">
-        <Button popovertarget="dropdown-menu-sample">Menu</Button>
+        <Button popovertarget="dropdown-menu-sample" variant="outline">
+          Menu
+        </Button>
         <Dropdown id="dropdown-menu-sample">
           <div class="flex flex-col">
-            <a href="/" class="rounded px-3 py-2 text-sm hover:bg-secondary">
+            <a href="/" class="rounded px-3 py-2 text-sm hover:bg-accent">
               Home
             </a>
-            <a href="/docs/button" class="rounded px-3 py-2 text-sm hover:bg-secondary">
+            <a href="/docs/button" class="rounded px-3 py-2 text-sm hover:bg-accent">
               Button
             </a>
             <button
               type="button"
               popovertarget="dropdown-menu-sample"
               popovertargetaction="hide"
-              class="rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+              class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
             >
               Close
             </button>
           </div>
         </Dropdown>
 
-        <Button popovertarget="dropdown-actions-sample" variant="outline">
+        <Button popovertarget="dropdown-actions-sample" variant="primary">
           Actions
         </Button>
         <Dropdown id="dropdown-actions-sample" align="end">
@@ -83,7 +85,7 @@ export function DropdownSample() {
               popovertarget="dropdown-actions-sample"
               popovertargetaction="hide"
               onclick="alert('Archived')"
-              class="rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+              class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
             >
               Archive
             </button>
@@ -92,7 +94,7 @@ export function DropdownSample() {
               popovertarget="dropdown-actions-sample"
               popovertargetaction="hide"
               onclick="alert('Duplicated')"
-              class="rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+              class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
             >
               Duplicate
             </button>
@@ -100,21 +102,21 @@ export function DropdownSample() {
               type="button"
               popovertarget="dropdown-actions-sample"
               popovertargetaction="hide"
-              class="rounded px-3 py-2 text-left text-sm text-destructive hover:bg-secondary"
+              class="rounded px-3 py-2 text-left text-sm text-destructive hover:bg-accent"
             >
               Delete
             </button>
           </div>
         </Dropdown>
 
-        <Button popovertarget="dropdown-custom-sample" variant="outline">
+        <Button popovertarget="dropdown-custom-sample" variant="secondary">
           Nested
         </Button>
         <Dropdown id="dropdown-custom-sample" side="bottom">
           <button
             type="button"
             popovertarget="dropdown-custom-nested-sample"
-            class="w-full rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+            class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
           >
             <div class="flex items-center justify-between">
               <span>Open Nested</span>
@@ -125,7 +127,7 @@ export function DropdownSample() {
             type="button"
             popovertarget="dropdown-custom-sample"
             popovertargetaction="hide"
-            class="w-full rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+            class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
           >
             Close
           </button>
@@ -134,7 +136,7 @@ export function DropdownSample() {
               type="button"
               popovertarget="dropdown-custom-sample"
               popovertargetaction="hide"
-              class="w-full rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+              class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
             >
               Nested
             </button>
@@ -143,21 +145,21 @@ export function DropdownSample() {
       </div>
 
       <div class="flex flex-wrap items-center gap-4">
-        <Button popovertarget="dropdown-align-start-sample" variant="secondary">
+        <Button popovertarget="dropdown-align-start-sample" variant="outline">
           Start
         </Button>
         <Dropdown id="dropdown-align-start-sample" align="start">
           <p class="px-3 py-2 text-sm">Aligned to start</p>
         </Dropdown>
 
-        <Button popovertarget="dropdown-align-center-sample" variant="secondary">
+        <Button popovertarget="dropdown-align-center-sample" variant="outline">
           Center
         </Button>
         <Dropdown id="dropdown-align-center-sample" align="center">
           <p class="px-3 py-2 text-sm">Aligned to center</p>
         </Dropdown>
 
-        <Button popovertarget="dropdown-align-end-sample" variant="secondary">
+        <Button popovertarget="dropdown-align-end-sample" variant="outline">
           End
         </Button>
         <Dropdown id="dropdown-align-end-sample" align="end">

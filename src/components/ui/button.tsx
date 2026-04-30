@@ -20,8 +20,8 @@ export function Button({
         {
           "bg-primary text-primary-foreground": variant === "primary",
           "bg-secondary text-secondary-foreground": variant === "secondary",
-          "border border-border hover:bg-secondary": variant === "outline",
-          "bg-destructive/20 text-destructive": variant === "destructive",
+          "border border-border hover:bg-accent": variant === "outline",
+          "bg-destructive/25 text-destructive": variant === "destructive",
         },
         custom,
       )}
@@ -48,7 +48,12 @@ export function ButtonSample() {
         Like
         <ThumbsUp />
       </Button>
-      <Button class="rounded-full bg-orange-400 px-8 font-bold text-white italic">Custom</Button>
+      <Button
+        variant="outline"
+        class="rounded-full border border-primary font-bold text-primary italic"
+      >
+        Custom
+      </Button>
     </div>
   );
 }

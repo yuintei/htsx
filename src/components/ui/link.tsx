@@ -9,7 +9,7 @@ export function Link({
   ...props
 }: Omit<JSX.IntrinsicElements["a"], "href"> & {
   href: string;
-  variant?: "text" | "underline" | "muted" | "buttonPrimary" | "buttonSecondary" | "buttonOutline";
+  variant?: "text" | "underline" | "buttonPrimary" | "buttonSecondary" | "buttonOutline";
   children?: Child;
 }) {
   const buttonStyle =
@@ -20,17 +20,15 @@ export function Link({
       class={c(
         "inline-flex items-center transition hover:opacity-80 active:opacity-70",
         {
-          "font-medium text-primary underline-offset-4 hover:underline": variant === "text",
-          "font-medium text-primary underline underline-offset-4": variant === "underline",
-          "font-medium text-muted-foreground underline-offset-4 hover:underline":
-            variant === "muted",
+          "font-medium underline-offset-4 hover:underline": variant === "text",
+          "font-medium underline underline-offset-4": variant === "underline",
         },
         buttonStyle &&
           "shrink-0 justify-center rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap select-none",
         {
           "bg-primary text-primary-foreground": variant === "buttonPrimary",
           "bg-secondary text-secondary-foreground": variant === "buttonSecondary",
-          "border border-border hover:bg-secondary": variant === "buttonOutline",
+          "border border-border hover:bg-accent": variant === "buttonOutline",
         },
         custom,
       )}
@@ -47,9 +45,6 @@ export function LinkSample() {
       <Link href="/docs/link">Text</Link>
       <Link href="/docs/link" variant="underline">
         Underline
-      </Link>
-      <Link href="/docs/link" variant="muted">
-        Muted
       </Link>
       <Link
         href="https://github.com/yuintei/htsx"

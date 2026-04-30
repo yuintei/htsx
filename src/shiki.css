@@ -1,3 +1,13 @@
+:root {
+  --code-line-highlight-bg: #e6e9ef;
+  --code-line-highlight-border: #737994;
+}
+
+.dark {
+  --code-line-highlight-bg: #414559;
+  --code-line-highlight-border: #737994;
+}
+
 @layer components {
   pre {
     font-family: "JetBrains Mono", monospace;
@@ -11,8 +21,8 @@
   :not(pre) > code {
     @apply rounded-md border p-1 text-xs! font-normal!;
     border-color: var(--border);
-    background-color: var(--secondary);
-    color: var(--foreground);
+    background-color: var(--muted);
+    color: var(--muted-foreground);
   }
 
   /*code block header*/
