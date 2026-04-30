@@ -17,7 +17,7 @@ export function Popover({
       id={id}
       popover={popover}
       class={c(
-        "m-auto rounded-md border border-border bg-card text-card-foreground backdrop:bg-background/50",
+        "m-auto rounded-md border border-border bg-card text-card-foreground shadow-md backdrop:bg-background/50",
         custom,
       )}
       {...props}
@@ -49,7 +49,9 @@ export function PopoverSample() {
             <Button variant="outline" popovertarget="popover-ssr-sample" popovertargetaction="hide">
               Cancel
             </Button>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" popovertarget="popover-ssr-sample" popovertargetaction="hide">
+              Submit
+            </Button>
           </div>
         </form>
       </Popover>
