@@ -59,7 +59,7 @@ export default jsxRenderer(({ children, metaData }, c) => {
           </script>
         `}
       </head>
-      <body class="mx-auto flex min-h-svh max-w-6xl flex-col bg-background p-8 text-foreground antialiased">
+      <body class="mx-auto flex min-h-svh max-w-6xl flex-col bg-background px-4 text-foreground antialiased">
         <Header />
         <main class="my-8 grow">{children}</main>
         <div id="toast-root"></div>

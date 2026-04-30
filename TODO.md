@@ -1,10 +1,7 @@
 ## v1.0
 
-- spinner
 - badge
 - breadcrumb
-- form
-  - input
   - select
   - file upload
   - checkbox
@@ -13,7 +10,7 @@
 - table
 - slider
 - pagination
-- dropdown menu
+- turnstile (form)
 
 - changelog
 - og.png

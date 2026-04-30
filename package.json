@@ -13,7 +13,9 @@
     "oxlint": "oxlint"
   },
   "dependencies": {
-    "hono": "^4.12.14"
+    "@hono/zod-validator": "^0.7.6",
+    "hono": "^4.12.14",
+    "zod": "^4.4.1"
   },
   "devDependencies": {
     "@fontsource/jetbrains-mono": "^5.2.8",

@@ -10,7 +10,6 @@ app.get("/", async (c) => {
       <Hero />
       <Info />
       <Faq />
-      <hr class="border-border" />
       <List />
     </div>,
     {

@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
+import formApi from "./api/form";
 import renderer from "./components/renderer";
 import home from "./routes/home";
 import docs from "./routes/docs";
@@ -15,6 +16,7 @@ app.use("*", renderer);
 // routes
 app.route("/", home);
 app.route("/docs", docs);
+app.route("/api/form", formApi);
 
 // utils
 app.route("/llms.txt", llms);

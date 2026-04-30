@@ -2,11 +2,13 @@ import type { Child, JSX } from "hono/jsx";
 import { Accordion } from "./ui/accordion";
 import { Button } from "./ui/button";
 import { c } from "./ui/c";
+import { Dropdown } from "./ui/dropdown";
 import { ChevronRight, Copy, ExternalLink, ThumbsUp } from "./ui/icons";
 import { Link } from "./ui/link";
 import { Popover } from "./ui/popover";
+import { Spinner } from "./ui/spinner";
 import { Tab } from "./ui/tab";
-import { Dropdown } from "./ui/dropdown";
+import { Input } from "./ui/input";
 
 function Box({
   title,
@@ -21,10 +23,10 @@ function Box({
 }) {
   return (
     <div class="flex flex-col gap-1">
-      <Link href={href} variant="underline">
+      <Link href={href}>
         <h3 class="font-bold">{title}</h3>
       </Link>
-      <div class={c("flex w-full min-w-0 rounded-md border border-border p-4", custom)} {...props}>
+      <div class={c("flex w-full flex-col rounded-md border border-border p-4", custom)} {...props}>
         {children}
       </div>
     </div>
@@ -33,7 +35,7 @@ function Box({
 
 export function List() {
   return (
-    <div class="not-prose grid w-full items-start gap-4 md:grid-cols-2">
+    <div class="not-prose mx-auto grid w-full max-w-3xl items-start gap-8 md:grid-cols-2">
       <Box title="Accordion" href="/docs/accordion">
         <Accordion
           class="text-xs"
@@ -271,6 +273,49 @@ export function List() {
           </div>
         </div>
       </Box>
+      <Box title="Form" href="/docs/form">
+        <div id="form-sample-mini-root"></div>
+        {import.meta.env.PROD ? (
+          <script type="module" src="/static/form.js" />
+        ) : (
+          <script type="module" src="/src/client/form.tsx" />
+        )}
+      </Box>
+      <Box title="Input" href="/docs/input">
+        <div class="not-prose grid grid-cols-2 gap-4">
+          <Input
+            id="input-email-sample"
+            type="email"
+            label="Email"
+            placeholder="you@example.com"
+            class="h-8 text-xs"
+          />
+          <Input
+            id="input-required-sample"
+            label="Required"
+            placeholder="Required value"
+            required
+            class="h-8 text-xs"
+          />
+          <Input
+            id="input-disabled-sample"
+            label="Disabled"
+            placeholder="Disabled"
+            class="h-8 text-xs"
+            disabled
+          />
+          <Input
+            id="input-error-sample"
+            type="email"
+            label="Email"
+            name="email"
+            value="invalid"
+            invalid
+            error="Invalid email."
+            class="h-8 text-xs"
+          />
+        </div>
+      </Box>
       <Box title="Link" href="/docs/link">
         <div class="flex flex-wrap items-center gap-2">
           <Link href="/docs/link" class="text-xs">
@@ -383,6 +428,16 @@ export function List() {
               </div>
             </div>
           </Popover>
+        </div>
+      </Box>
+      <Box title="Spinner" href="/docs/spinner">
+        <div class="flex flex-wrap items-center gap-4">
+          <Spinner />
+          <Spinner class="text-primary" />
+          <Spinner class="size-6" />
+          <Button disabled class="px-3 py-1.5">
+            <Spinner class="size-4" />
+          </Button>
         </div>
       </Box>
       <Box title="Tab" href="/docs/tab">

@@ -1,0 +1,42 @@
+export const title = "Spinner";
+export const description = "Spinner component for Hono JSX";
+export const published = "2026-04-30";
+
+import { SpinnerSample } from "/src/components/ui/spinner";
+
+## Examples
+
+<SpinnerSample />
+
+```tsx
+// Default
+<Spinner />
+
+// Color
+<Spinner class="text-primary" />
+
+// Size
+<Spinner class="size-6" />
+
+// Loading...
+<Button type="submit" disabled>
+  <Spinner />
+</Button>
+```
+
+## Code
+
+```tsx title="ui/spinner.tsx"
+import type { JSX } from "hono/jsx";
+import { c } from "./c";
+
+export function Spinner({ class: custom, ...props }: JSX.IntrinsicElements["span"]) {
+  return (
+    <span
+      class={c("inline-block size-5 animate-spin rounded-full border border-t-transparent", custom)}
+      aria-hidden="true"
+      {...props}
+    />
+  );
+}
+```

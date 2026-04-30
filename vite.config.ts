@@ -16,7 +16,12 @@ export default defineConfig(({ mode }) => {
       plugins: [tailwindcss()],
       build: {
         rolldownOptions: {
-          input: ["./src/style.css", "./src/client/copy.tsx", "./src/client/toast.tsx"],
+          input: [
+            "./src/style.css",
+            "./src/client/copy.tsx",
+            "./src/client/form.tsx",
+            "./src/client/toast.tsx",
+          ],
           output: {
             entryFileNames: "static/[name].js",
             chunkFileNames: "static/[name]-[hash].js",

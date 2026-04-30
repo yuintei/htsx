@@ -65,7 +65,7 @@ app.get(
           <h1>{title}</h1>
           <p class="lead">{description}</p>
           {children}
-          <div class="flex flex-col">
+          <div class="my-4 flex flex-col">
             <time datetime={published} class="text-end">
               {`Published: ${new Date(published).toLocaleDateString("ja-JP")}`}
             </time>
