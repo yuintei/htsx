@@ -5,7 +5,7 @@ import { Sun, Moon, GithubBlack, GithubWhite } from "./ui/icons";
 
 export default function Header() {
   return (
-    <header class="flex items-center justify-between">
+    <header class="sticky top-0 z-10 flex items-center justify-between bg-background py-4">
       <div class="flex items-center gap-16">
         <a href="/" class="text-xl font-bold hover:opacity-80 active:opacity-70" translate="no">
           htsx
