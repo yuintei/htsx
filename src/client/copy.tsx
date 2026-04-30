@@ -17,7 +17,7 @@ function CopyButton({ code }: { code: HTMLElement }) {
   return (
     <Button
       type="button"
-      variant="secondary"
+      variant="outline"
       class="copy-button p-1.5 text-muted-foreground"
       onClick={copy}
       aria-label={copied ? "Copied code" : "Copy code"}

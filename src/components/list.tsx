@@ -83,7 +83,10 @@ export function List() {
               <ThumbsUp />
             </span>
           </Button>
-          <Button class="rounded-full bg-orange-400 px-2 py-1 text-xs font-bold text-white italic">
+          <Button
+            variant="outline"
+            class="rounded-full border border-primary px-2 py-1 text-xs font-bold text-primary italic"
+          >
             Custom
           </Button>
         </div>
@@ -91,33 +94,33 @@ export function List() {
       <Box title="Dropdown" href="/docs/dropdown">
         <div class="not-prose flex flex-col gap-4">
           <div class="flex flex-wrap items-center gap-4">
-            <Button popovertarget="dropdown-menu-sample" class="px-2 py-1 text-xs">
+            <Button
+              popovertarget="dropdown-menu-sample"
+              variant="outline"
+              class="px-2 py-1 text-xs"
+            >
               Menu
             </Button>
             <Dropdown id="dropdown-menu-sample">
               <div class="flex flex-col">
-                <a href="/" class="rounded px-3 py-2 text-sm hover:bg-secondary">
+                <a href="/" class="rounded px-3 py-2 text-sm hover:bg-accent">
                   Home
                 </a>
-                <a href="/docs/button" class="rounded px-3 py-2 text-sm hover:bg-secondary">
+                <a href="/docs/button" class="rounded px-3 py-2 text-sm hover:bg-accent">
                   Button
                 </a>
                 <button
                   type="button"
                   popovertarget="dropdown-menu-sample"
                   popovertargetaction="hide"
-                  class="rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+                  class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
                 >
                   Close
                 </button>
               </div>
             </Dropdown>
 
-            <Button
-              popovertarget="dropdown-actions-sample"
-              class="px-2 py-1 text-xs"
-              variant="outline"
-            >
+            <Button popovertarget="dropdown-actions-sample" class="px-2 py-1 text-xs">
               Actions
             </Button>
             <Dropdown id="dropdown-actions-sample" align="end">
@@ -127,7 +130,7 @@ export function List() {
                   popovertarget="dropdown-actions-sample"
                   popovertargetaction="hide"
                   onclick="alert('Archived')"
-                  class="rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+                  class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
                 >
                   Archive
                 </button>
@@ -136,7 +139,7 @@ export function List() {
                   popovertarget="dropdown-actions-sample"
                   popovertargetaction="hide"
                   onclick="alert('Duplicated')"
-                  class="rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+                  class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
                 >
                   Duplicate
                 </button>
@@ -144,7 +147,7 @@ export function List() {
                   type="button"
                   popovertarget="dropdown-actions-sample"
                   popovertargetaction="hide"
-                  class="rounded px-3 py-2 text-left text-sm text-destructive hover:bg-secondary"
+                  class="rounded px-3 py-2 text-left text-sm text-destructive hover:bg-accent"
                 >
                   Delete
                 </button>
@@ -154,7 +157,7 @@ export function List() {
             <Button
               popovertarget="dropdown-custom-sample"
               class="px-2 py-1 text-xs"
-              variant="outline"
+              variant="secondary"
             >
               Nested
             </Button>
@@ -162,7 +165,7 @@ export function List() {
               <button
                 type="button"
                 popovertarget="dropdown-custom-nested-sample"
-                class="w-full rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+                class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
               >
                 <div class="flex items-center justify-between">
                   <span>Open Nested</span>
@@ -173,7 +176,7 @@ export function List() {
                 type="button"
                 popovertarget="dropdown-custom-sample"
                 popovertargetaction="hide"
-                class="w-full rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+                class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
               >
                 Close
               </button>
@@ -182,7 +185,7 @@ export function List() {
                   type="button"
                   popovertarget="dropdown-custom-sample"
                   popovertargetaction="hide"
-                  class="w-full rounded px-3 py-2 text-left text-sm hover:bg-secondary"
+                  class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
                 >
                   Nested
                 </button>
@@ -194,7 +197,7 @@ export function List() {
             <Button
               popovertarget="dropdown-align-start-sample"
               class="px-2 py-1 text-xs"
-              variant="secondary"
+              variant="outline"
             >
               Start
             </Button>
@@ -205,7 +208,7 @@ export function List() {
             <Button
               popovertarget="dropdown-align-center-sample"
               class="px-2 py-1 text-xs"
-              variant="secondary"
+              variant="outline"
             >
               Center
             </Button>
@@ -216,7 +219,7 @@ export function List() {
             <Button
               popovertarget="dropdown-align-end-sample"
               class="px-2 py-1 text-xs"
-              variant="secondary"
+              variant="outline"
             >
               End
             </Button>
@@ -276,9 +279,6 @@ export function List() {
           <Link href="/docs/link" variant="underline" class="text-xs">
             Underline
           </Link>
-          <Link href="/docs/link" variant="muted" class="text-xs">
-            Muted
-          </Link>
           <Link
             href="https://github.com/yuintei/htsx"
             target="_blank"
@@ -316,7 +316,7 @@ export function List() {
       </Box>
       <Box title="Popover" href="/docs/popover">
         <div class="not-prose flex flex-wrap items-center gap-2">
-          <Button popovertarget="popover-menu-sample" class="px-2 py-1 text-xs">
+          <Button popovertarget="popover-menu-sample" variant="outline" class="px-2 py-1 text-xs">
             Menu
           </Button>
           <Popover id="popover-menu-sample">
@@ -354,7 +354,11 @@ export function List() {
             </form>
           </Popover>
 
-          <Button popovertarget="popover-client-sample" class="px-2 py-1 text-xs">
+          <Button
+            popovertarget="popover-client-sample"
+            variant="secondary"
+            class="px-2 py-1 text-xs"
+          >
             Client Action
           </Button>
           <Popover id="popover-client-sample">

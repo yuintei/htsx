@@ -12,6 +12,9 @@ import { Button } from "/src/components/ui/button";
 ```tsx
 // Menu
 <Button popovertarget="popover-menu-sample">Menu</Button>
+<Button popovertarget="popover-menu-sample" variant="outline">
+  Menu
+</Button>
 <Popover id="popover-menu-sample">
   <div class="flex flex-col items-center gap-4 p-8">
     <a href="/">Home</a>
@@ -23,23 +26,29 @@ import { Button } from "/src/components/ui/button";
 </Popover>
 
 // SSR Form
-<Button popovertarget="popover-ssr-sample">SSR Form</Button>
+<Button popovertarget="popover-ssr-sample" variant="primary">
+  SSR Form
+</Button>
 <Popover id="popover-ssr-sample">
-  <form method="get" action="/docs/popover" class="p-4">
+  <form method="get" action="/docs/popover" class="flex flex-col gap-4 p-8">
     <p>Are you sure to submit this form?</p>
     <div class="flex justify-center gap-4">
       <Button variant="outline" popovertarget="popover-ssr-sample" popovertargetaction="hide">
         Cancel
       </Button>
-      <Button type="submit" popovertarget="popover-ssr-sample" popovertargetaction="hide">Submit</Button>
+      <Button type="submit" popovertarget="popover-ssr-sample" popovertargetaction="hide">
+        Submit
+      </Button>
     </div>
   </form>
 </Popover>
 
 // Client Action
-<Button popovertarget="popover-client-sample">Client Action</Button>
+<Button popovertarget="popover-client-sample" variant="secondary">
+  Client Action
+</Button>
 <Popover id="popover-client-sample">
-  <div class="p-4">
+  <div class="flex flex-col gap-4 p-8">
     <p>Are you sure to click this?</p>
     <div class="flex justify-center gap-4">
       <Button
@@ -83,7 +92,7 @@ export function Popover({
       id={id}
       popover={popover}
       class={c(
-        "m-auto rounded-md border border-border bg-card text-card-foreground shadow-md backdrop:bg-background/50",
+        "m-auto rounded-md border border-border bg-popover text-popover-foreground shadow-md backdrop:bg-background/50",
         custom,
       )}
       {...props}

@@ -47,7 +47,7 @@ export function Hero() {
         <Link variant="buttonPrimary" href="/docs/quickstart">
           Quickstart
         </Link>
-        <Link variant="buttonSecondary" href="/docs/components">
+        <Link variant="buttonOutline" href="/docs/components">
           See Components
         </Link>
       </div>
@@ -59,8 +59,8 @@ export function Info() {
   return (
     <div class="grid gap-4 md:grid-cols-2">
       {InfoList.map(({ title, description }) => (
-        <div class="flex flex-col gap-2 rounded-md border border-border bg-secondary p-4">
-          <h2 class="text-lg font-bold text-secondary-foreground">{title}</h2>
+        <div class="flex flex-col gap-2 rounded-md border border-border bg-card p-4">
+          <h2 class="text-lg font-bold text-card-foreground">{title}</h2>
           <p class="text-muted-foreground">{description}</p>
         </div>
       ))}

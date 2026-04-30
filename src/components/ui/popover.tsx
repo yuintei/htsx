@@ -17,7 +17,7 @@ export function Popover({
       id={id}
       popover={popover}
       class={c(
-        "m-auto rounded-md border border-border bg-card text-card-foreground shadow-md backdrop:bg-background/50",
+        "m-auto rounded-md border border-border bg-popover text-popover-foreground shadow-md backdrop:bg-background/50",
         custom,
       )}
       {...props}
@@ -30,7 +30,9 @@ export function Popover({
 export function PopoverSample() {
   return (
     <div class="not-prose flex flex-wrap items-center gap-4">
-      <Button popovertarget="popover-menu-sample">Menu</Button>
+      <Button popovertarget="popover-menu-sample" variant="outline">
+        Menu
+      </Button>
       <Popover id="popover-menu-sample">
         <div class="flex flex-col items-center gap-4 p-8">
           <a href="/">Home</a>
@@ -41,7 +43,9 @@ export function PopoverSample() {
         </div>
       </Popover>
 
-      <Button popovertarget="popover-ssr-sample">SSR Form</Button>
+      <Button popovertarget="popover-ssr-sample" variant="primary">
+        SSR Form
+      </Button>
       <Popover id="popover-ssr-sample">
         <form method="get" action="/docs/popover" class="flex flex-col gap-4 p-8">
           <p>Are you sure to submit this form?</p>
@@ -56,7 +60,9 @@ export function PopoverSample() {
         </form>
       </Popover>
 
-      <Button popovertarget="popover-client-sample">Client Action</Button>
+      <Button popovertarget="popover-client-sample" variant="secondary">
+        Client Action
+      </Button>
       <Popover id="popover-client-sample">
         <div class="flex flex-col gap-4 p-8">
           <p>Are you sure to click this?</p>
