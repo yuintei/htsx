@@ -1,14 +1,16 @@
 import type { Child, JSX } from "hono/jsx";
 import { Accordion } from "./ui/accordion";
 import { Button } from "./ui/button";
+import { Checkbox } from "./ui/checkbox";
 import { c } from "./ui/c";
 import { Dropdown } from "./ui/dropdown";
 import { ChevronRight, Copy, ExternalLink, ThumbsUp } from "./ui/icons";
+import { Input } from "./ui/input";
 import { Link } from "./ui/link";
 import { Popover } from "./ui/popover";
+import { Select } from "./ui/select";
 import { Spinner } from "./ui/spinner";
 import { Tab } from "./ui/tab";
-import { Input } from "./ui/input";
 
 function Box({
   title,
@@ -25,6 +27,7 @@ function Box({
     <div class="flex flex-col gap-1">
       <Link href={href}>
         <h3 class="font-bold">{title}</h3>
+        <ChevronRight />
       </Link>
       <div class={c("flex w-full flex-col rounded-md border border-border p-4", custom)} {...props}>
         {children}
@@ -35,11 +38,10 @@ function Box({
 
 export function List() {
   return (
-    <div class="not-prose mx-auto grid w-full max-w-3xl items-start gap-8 md:grid-cols-2">
+    <div class="not-prose mx-auto grid w-full items-start gap-8 md:grid-cols-2">
       <Box title="Accordion" href="/docs/accordion">
         <Accordion
-          class="text-xs"
-          defaultOpen={["q2"]}
+          defaultOpen={["q1"]}
           items={[
             {
               value: "q1",
@@ -55,226 +57,136 @@ export function List() {
         />
       </Box>
       <Box title="Button" href="/docs/button">
-        <div class="flex flex-wrap items-center gap-2">
-          <Button variant="primary" class="px-2 py-1 text-xs">
-            Primary
+        <div class="not-prose flex flex-wrap items-center gap-4">
+          <Button variant="primary">Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="destructive">Destructive</Button>
+          <Button disabled>Disabled</Button>
+          <Button type="submit">Submit</Button>
+          <Button variant="outline" class="p-2.5">
+            <Copy />
           </Button>
-          <Button variant="secondary" class="px-2 py-1 text-xs">
-            Secondary
-          </Button>
-          <Button variant="outline" class="px-2 py-1 text-xs">
-            Outline
-          </Button>
-          <Button variant="destructive" class="px-2 py-1 text-xs">
-            Destructive
-          </Button>
-          <Button disabled class="px-2 py-1 text-xs">
-            Disabled
-          </Button>
-          <Button type="submit" class="px-2 py-1 text-xs">
-            Submit
-          </Button>
-          <Button variant="outline" class="p-1.5">
-            <span class="[&>svg]:size-3">
-              <Copy />
-            </span>
-          </Button>
-          <Button variant="primary" class="gap-1 px-2 py-1 text-xs">
+          <Button variant="primary" class="gap-2">
             Like
-            <span class="[&>svg]:size-3">
-              <ThumbsUp />
-            </span>
+            <ThumbsUp />
           </Button>
           <Button
             variant="outline"
-            class="rounded-full border border-primary px-2 py-1 text-xs font-bold text-primary italic"
+            class="rounded-full border border-primary font-bold text-primary italic"
           >
             Custom
           </Button>
         </div>
       </Box>
+      <Box title="Checkbox" href="/docs/checkbox">
+        <div class="not-prose grid gap-4 md:grid-cols-2">
+          <Checkbox id="check" name="check" label="Check" />
+          <Checkbox
+            id="required-error"
+            name="terms"
+            label="Accept terms"
+            required
+            invalid
+            error="Please accept terms."
+          />
+        </div>
+      </Box>
       <Box title="Dropdown" href="/docs/dropdown">
-        <div class="not-prose flex flex-col gap-4">
-          <div class="flex flex-wrap items-center gap-4">
-            <Button
-              popovertarget="dropdown-menu-sample"
-              variant="outline"
-              class="px-2 py-1 text-xs"
-            >
-              Menu
-            </Button>
-            <Dropdown id="dropdown-menu-sample">
-              <div class="flex flex-col">
-                <a href="/" class="rounded px-3 py-2 text-sm hover:bg-accent">
-                  Home
-                </a>
-                <a href="/docs/button" class="rounded px-3 py-2 text-sm hover:bg-accent">
-                  Button
-                </a>
-                <button
-                  type="button"
-                  popovertarget="dropdown-menu-sample"
-                  popovertargetaction="hide"
-                  class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
-                >
-                  Close
-                </button>
-              </div>
-            </Dropdown>
-
-            <Button popovertarget="dropdown-actions-sample" class="px-2 py-1 text-xs">
-              Actions
-            </Button>
-            <Dropdown id="dropdown-actions-sample" align="end">
-              <div class="flex flex-col">
-                <button
-                  type="button"
-                  popovertarget="dropdown-actions-sample"
-                  popovertargetaction="hide"
-                  onclick="alert('Archived')"
-                  class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
-                >
-                  Archive
-                </button>
-                <button
-                  type="button"
-                  popovertarget="dropdown-actions-sample"
-                  popovertargetaction="hide"
-                  onclick="alert('Duplicated')"
-                  class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
-                >
-                  Duplicate
-                </button>
-                <button
-                  type="button"
-                  popovertarget="dropdown-actions-sample"
-                  popovertargetaction="hide"
-                  class="rounded px-3 py-2 text-left text-sm text-destructive hover:bg-accent"
-                >
-                  Delete
-                </button>
-              </div>
-            </Dropdown>
-
-            <Button
-              popovertarget="dropdown-custom-sample"
-              class="px-2 py-1 text-xs"
-              variant="secondary"
-            >
-              Nested
-            </Button>
-            <Dropdown id="dropdown-custom-sample" side="bottom">
+        <div class="flex flex-wrap items-center gap-4">
+          <Button popovertarget="dropdown-menu-sample" variant="outline">
+            Menu
+          </Button>
+          <Dropdown id="dropdown-menu-sample">
+            <div class="flex flex-col">
+              <a href="/" class="rounded px-3 py-2 text-sm hover:bg-accent">
+                Home
+              </a>
+              <a href="/docs/button" class="rounded px-3 py-2 text-sm hover:bg-accent">
+                Button
+              </a>
               <button
                 type="button"
-                popovertarget="dropdown-custom-nested-sample"
-                class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
+                popovertarget="dropdown-menu-sample"
+                popovertargetaction="hide"
+                class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
               >
-                <div class="flex items-center justify-between">
-                  <span>Open Nested</span>
-                  <ChevronRight />
-                </div>
+                Close
               </button>
+            </div>
+          </Dropdown>
+
+          <Button popovertarget="dropdown-actions-sample" variant="primary">
+            Actions
+          </Button>
+          <Dropdown id="dropdown-actions-sample" align="end">
+            <div class="flex flex-col">
+              <button
+                type="button"
+                popovertarget="dropdown-actions-sample"
+                popovertargetaction="hide"
+                onclick="alert('Archived')"
+                class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
+              >
+                Archive
+              </button>
+              <button
+                type="button"
+                popovertarget="dropdown-actions-sample"
+                popovertargetaction="hide"
+                onclick="alert('Duplicated')"
+                class="rounded px-3 py-2 text-left text-sm hover:bg-accent"
+              >
+                Duplicate
+              </button>
+              <button
+                type="button"
+                popovertarget="dropdown-actions-sample"
+                popovertargetaction="hide"
+                class="rounded px-3 py-2 text-left text-sm text-destructive hover:bg-accent"
+              >
+                Delete
+              </button>
+            </div>
+          </Dropdown>
+
+          <Button popovertarget="dropdown-custom-sample" variant="secondary">
+            Nested
+          </Button>
+          <Dropdown id="dropdown-custom-sample" side="bottom">
+            <button
+              type="button"
+              popovertarget="dropdown-custom-nested-sample"
+              class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
+            >
+              <div class="flex items-center justify-between">
+                <span>Open Nested</span>
+                <ChevronRight />
+              </div>
+            </button>
+            <button
+              type="button"
+              popovertarget="dropdown-custom-sample"
+              popovertargetaction="hide"
+              class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
+            >
+              Close
+            </button>
+            <Dropdown id="dropdown-custom-nested-sample" side="right" align="center">
               <button
                 type="button"
                 popovertarget="dropdown-custom-sample"
                 popovertargetaction="hide"
                 class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
               >
-                Close
+                Nested
               </button>
-              <Dropdown id="dropdown-custom-nested-sample" side="right" align="center">
-                <button
-                  type="button"
-                  popovertarget="dropdown-custom-sample"
-                  popovertargetaction="hide"
-                  class="w-full rounded px-3 py-2 text-left text-sm hover:bg-accent"
-                >
-                  Nested
-                </button>
-              </Dropdown>
             </Dropdown>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-4">
-            <Button
-              popovertarget="dropdown-align-start-sample"
-              class="px-2 py-1 text-xs"
-              variant="outline"
-            >
-              Start
-            </Button>
-            <Dropdown id="dropdown-align-start-sample" align="start">
-              <p class="px-3 py-2 text-sm">Aligned to start</p>
-            </Dropdown>
-
-            <Button
-              popovertarget="dropdown-align-center-sample"
-              class="px-2 py-1 text-xs"
-              variant="outline"
-            >
-              Center
-            </Button>
-            <Dropdown id="dropdown-align-center-sample" align="center">
-              <p class="px-3 py-2 text-sm">Aligned to center</p>
-            </Dropdown>
-
-            <Button
-              popovertarget="dropdown-align-end-sample"
-              class="px-2 py-1 text-xs"
-              variant="outline"
-            >
-              End
-            </Button>
-            <Dropdown id="dropdown-align-end-sample" align="end">
-              <p class="px-3 py-2 text-sm">Aligned to end</p>
-            </Dropdown>
-
-            <Button
-              popovertarget="dropdown-side-top-sample"
-              class="px-2 py-1 text-xs"
-              variant="outline"
-            >
-              Top
-            </Button>
-            <Button
-              popovertarget="dropdown-side-right-sample"
-              class="px-2 py-1 text-xs"
-              variant="outline"
-            >
-              Right
-            </Button>
-            <Button
-              popovertarget="dropdown-side-left-sample"
-              class="px-2 py-1 text-xs"
-              variant="outline"
-            >
-              Left
-            </Button>
-            <Button
-              popovertarget="dropdown-side-bottom-sample"
-              class="px-2 py-1 text-xs"
-              variant="outline"
-            >
-              Bottom
-            </Button>
-
-            <Dropdown id="dropdown-side-top-sample" side="top" align="center">
-              <p class="px-3 py-2 text-sm">Top side</p>
-            </Dropdown>
-            <Dropdown id="dropdown-side-right-sample" side="right" align="center">
-              <p class="px-3 py-2 text-sm">Right side</p>
-            </Dropdown>
-            <Dropdown id="dropdown-side-bottom-sample" side="bottom" align="center">
-              <p class="px-3 py-2 text-sm">Bottom side</p>
-            </Dropdown>
-            <Dropdown id="dropdown-side-left-sample" side="left" align="center">
-              <p class="px-3 py-2 text-sm">Left side</p>
-            </Dropdown>
-          </div>
+          </Dropdown>
         </div>
       </Box>
       <Box title="Form" href="/docs/form">
-        <div id="form-sample-mini-root"></div>
+        <div id="form-sample-root" class="mx-auto w-full max-w-sm"></div>
         {import.meta.env.PROD ? (
           <script type="module" src="/static/form.js" />
         ) : (
@@ -283,66 +195,44 @@ export function List() {
       </Box>
       <Box title="Input" href="/docs/input">
         <div class="not-prose grid grid-cols-2 gap-4">
+          <Input id="email" type="email" label="Email" placeholder="you@example.com" />
+          <Input id="password" type="password" label="Password" placeholder="••••••••" />
           <Input
-            id="input-email-sample"
-            type="email"
-            label="Email"
-            placeholder="you@example.com"
-            class="h-8 text-xs"
-          />
-          <Input
-            id="input-required-sample"
-            label="Required"
-            placeholder="Required value"
-            required
-            class="h-8 text-xs"
-          />
-          <Input
-            id="input-disabled-sample"
-            label="Disabled"
-            placeholder="Disabled"
-            class="h-8 text-xs"
-            disabled
-          />
-          <Input
-            id="input-error-sample"
+            id="error"
             type="email"
             label="Email"
             name="email"
             value="invalid"
             invalid
-            error="Invalid email."
-            class="h-8 text-xs"
+            required
+            error="Enter a valid email."
           />
+          <Input id="disabled" label="Disabled" placeholder="Disabled" disabled />
         </div>
       </Box>
       <Box title="Link" href="/docs/link">
-        <div class="flex flex-wrap items-center gap-2">
-          <Link href="/docs/link" class="text-xs">
-            Text
-          </Link>
-          <Link href="/docs/link" variant="underline" class="text-xs">
+        <div class="not-prose flex flex-wrap items-center gap-4">
+          <Link href="/docs/link">Text</Link>
+          <Link href="/docs/link" variant="underline">
             Underline
           </Link>
           <Link
             href="https://github.com/yuintei/htsx"
             target="_blank"
             rel="noreferrer"
-            class="gap-1 px-2 py-1 text-xs"
+            class="inline-flex items-center gap-1"
           >
             With icon
-            <span class="[&>svg]:size-3">
-              <ExternalLink />
-            </span>
+            <ExternalLink />
           </Link>
 
-          <Link href="/docs/link" variant="buttonPrimary" class="px-2 py-1 text-xs">
+          <Link href="/docs/link" variant="buttonPrimary">
             Primary
           </Link>
-          <Link href="/docs/link" variant="buttonSecondary" class="px-2 py-1 text-xs">
+          <Link href="/docs/link" variant="buttonSecondary">
             Secondary
           </Link>
-          <Link href="/docs/link" variant="buttonOutline" class="px-2 py-1 text-xs">
+          <Link href="/docs/link" variant="buttonOutline">
             Outline
           </Link>
           <Link
@@ -350,18 +240,16 @@ export function List() {
             variant="buttonPrimary"
             target="_blank"
             rel="noreferrer"
-            class="gap-1 px-2 py-1 text-xs"
+            class="gap-2"
           >
             With icon
-            <span class="[&>svg]:size-3">
-              <ExternalLink />
-            </span>
+            <ExternalLink />
           </Link>
         </div>
       </Box>
       <Box title="Popover" href="/docs/popover">
-        <div class="not-prose flex flex-wrap items-center gap-2">
-          <Button popovertarget="popover-menu-sample" variant="outline" class="px-2 py-1 text-xs">
+        <div class="not-prose flex flex-wrap items-center gap-4">
+          <Button popovertarget="popover-menu-sample" variant="outline">
             Menu
           </Button>
           <Popover id="popover-menu-sample">
@@ -378,7 +266,7 @@ export function List() {
             </div>
           </Popover>
 
-          <Button popovertarget="popover-ssr-sample" class="px-2 py-1 text-xs">
+          <Button popovertarget="popover-ssr-sample" variant="primary">
             SSR Form
           </Button>
           <Popover id="popover-ssr-sample">
@@ -399,11 +287,7 @@ export function List() {
             </form>
           </Popover>
 
-          <Button
-            popovertarget="popover-client-sample"
-            variant="secondary"
-            class="px-2 py-1 text-xs"
-          >
+          <Button popovertarget="popover-client-sample" variant="secondary">
             Client Action
           </Button>
           <Popover id="popover-client-sample">
@@ -430,20 +314,50 @@ export function List() {
           </Popover>
         </div>
       </Box>
+      <Box title="Select" href="/docs/select">
+        <div class="not-prose grid grid-cols-2 gap-4">
+          <Select
+            id="country"
+            name="country"
+            label="Country"
+            invalid
+            error="Select a country."
+            required
+          >
+            <option value="" selected>
+              Select a country
+            </option>
+            <option value="jp">Japan</option>
+            <option value="us">United States</option>
+          </Select>
+          <Select id="timezone" name="timezone" label="Timezone">
+            <option value="" selected>
+              Select a timezone
+            </option>
+            <optgroup label="Asia">
+              <option value="asia-tokyo">Tokyo</option>
+              <option value="asia-seoul">Seoul</option>
+            </optgroup>
+            <optgroup label="America">
+              <option value="america-new-york">New York</option>
+              <option value="america-los-angeles">Los Angeles</option>
+            </optgroup>
+          </Select>
+        </div>
+      </Box>
       <Box title="Spinner" href="/docs/spinner">
-        <div class="flex flex-wrap items-center gap-4">
+        <div class="not-prose flex flex-wrap items-center gap-4">
           <Spinner />
           <Spinner class="text-primary" />
           <Spinner class="size-6" />
-          <Button disabled class="px-3 py-1.5">
-            <Spinner class="size-4" />
+          <Button type="submit" disabled>
+            <Spinner />
           </Button>
         </div>
       </Box>
       <Box title="Tab" href="/docs/tab">
         <Tab
           defaultValue="overview"
-          class="text-xs"
           items={[
             {
               value: "overview",
@@ -464,7 +378,7 @@ export function List() {
         />
       </Box>
       <Box title="Toast" href="/docs/toast">
-        <div id="toast-sample-mini-root"></div>
+        <div id="toast-sample-root"></div>
         {import.meta.env.PROD ? (
           <script type="module" src="/static/toast.js" />
         ) : (

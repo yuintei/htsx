@@ -4,7 +4,7 @@ export const published = "2026-04-30";
 
 ## Examples
 
-<div id="form-sample-root"></div>
+<div id="form-sample-root" class="max-w-sm mx-auto"></div>
 {import.meta.env.PROD ? (
   <script type="module" src="/static/form.js" />
 ) : (
@@ -13,9 +13,9 @@ export const published = "2026-04-30";
 
 ## How it works
 
-1. Submit with blank (client validation with `type` and `required`)
-2. Submit with 1 word (zod validation, error message, keep form state)
-3. Submit with 2 words (loading spinner, success toast, clear form state)
+1. Submit with no word and no select (client validation with `type` and `required`)
+2. Submit with 1 word and Option A (zod validation, error message, keep form state)
+3. Submit with 2 words and Option A (loading spinner, success toast, clear form state)
 
 ## Code
 
@@ -26,33 +26,34 @@ import * as z from "zod";
 
 const app = new Hono();
 
-const schema = z.object({
-  text1: z.string().trim().min(2, "Text 1 must be at least 2 characters."),
-  text2: z.string().trim().min(2, "Text 2 must be at least 2 characters."),
+const formSelectOptions = ["option-a", "option-b"] as const;
+
+const formSchema = z.object({
+  text: z.string().trim().min(2, "Text must be at least 2 characters."),
+  select: z.enum(formSelectOptions, "Select an option."),
 });
 
 const submitRoute = app.post(
   "/submit",
-  zValidator("json", schema, (result, c) => {
+  zValidator("json", formSchema, (result, c) => {
     if (!result.success) {
       return c.json(z.flattenError(result.error), 400);
     }
   }),
   async (c) => {
-    // const { text1, text2 } = c.req.valid("json");
-    // try {
-    //   await db.insert(form).values({ text1, text2 });
-    // } catch (e) {
-    //   console.error("Failed:", e);
-    //   return c.json({ message: "Failed" }, 503);
-    // }
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    return c.json({ message: "ok" }, 200);
+    const { text, select } = c.req.valid("json");
+    try {
+      await db.insert(form).values({ text, select });
+      return c.json({ message: "ok" }, 200);
+    } catch (e) {
+      console.error("Failed:", e);
+      return c.json({ message: "Failed" }, 503);
+    }
   },
 );
 
 export type SubmitApiType = typeof submitRoute;
+export type FormSchemaType = z.infer<typeof formSchema>;
 
 export default app;
 ```
@@ -61,30 +62,33 @@ export default app;
 import { hc } from "hono/client";
 import { useState } from "hono/jsx";
 import { render } from "hono/jsx/dom";
-import type { SubmitApiType } from "../api/form";
+import type { FormSchemaType, SubmitApiType } from "../api/form";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
+import { Select } from "../components/ui/select";
 import { Spinner } from "../components/ui/spinner";
 import { toast } from "../components/ui/toast";
 
 const client = hc<SubmitApiType>("/api/form");
 
+const formSelectOptions: { value: FormSchemaType["select"]; label: string }[] = [
+  { value: "option-a", label: "Option A" },
+  { value: "option-b", label: "Option B" },
+];
+
 type Status = "idle" | "loading" | "success" | "error_zod" | "error";
 
 type ZodErrors = {
-  text1?: string[];
-  text2?: string[];
+  text?: string[];
+  select?: string[];
 };
 
-const STATUS_MESSAGES: Partial<Record<Status, string>> = {
-  success: "Submitted.",
-  error_zod: "Invalid input.",
-  error: "Server error.",
-};
+const getSelect = (event: Event) =>
+  (event.target as HTMLSelectElement).value as FormSchemaType["select"];
 
 function FormSample() {
-  const [text1, setText1] = useState("");
-  const [text2, setText2] = useState("");
+  const [text, setText] = useState("");
+  const [selectValue, setSelectValue] = useState<FormSchemaType["select"] | "">("");
   const [status, setStatus] = useState<Status>("idle");
   const [zodErrors, setZodErrors] = useState<ZodErrors>({});
 
@@ -95,30 +99,32 @@ function FormSample() {
     setZodErrors({});
 
     try {
-      const res = await client.submit.$post({ json: { text1, text2 } });
+      const res = await client.submit.$post({
+        json: { text, select: selectValue as FormSchemaType["select"] },
+      });
 
       if (!res.ok) {
         if (res.status === 400) {
           const data = await res.json();
           setStatus("error_zod");
           setZodErrors({
-            text1: data.fieldErrors?.text1,
-            text2: data.fieldErrors?.text2,
+            text: data.fieldErrors?.text,
+            select: data.fieldErrors?.select,
           });
-          toast({ status: "error", message: STATUS_MESSAGES.error_zod ?? "" });
+          toast({ status: "error", message: "Invalid input." });
           return;
         }
         setStatus("error");
-        toast({ status: "error", message: STATUS_MESSAGES.error ?? "" });
+        toast({ status: "error", message: "Error" });
         return;
       }
       setStatus("success");
-      setText1("");
-      setText2("");
-      toast({ status: "success", message: STATUS_MESSAGES.success ?? "" });
+      setText("");
+      setSelectValue("");
+      toast({ status: "success", message: "Submitted." });
     } catch {
       setStatus("error");
-      toast({ status: "error", message: STATUS_MESSAGES.error ?? "" });
+      toast({ status: "error", message: "Error" });
     }
   };
 
@@ -130,28 +136,34 @@ function FormSample() {
     >
       <Input
         id="form-text-sample"
-        label="Text 1"
-        name="text1"
-        value={text1}
-        onInput={(event) => setText1((event.target as HTMLInputElement).value)}
-        invalid={Boolean(zodErrors.text1)}
-        error={zodErrors.text1?.[0]}
-        placeholder="Text 1"
+        label="Text"
+        name="text"
+        value={text}
+        onInput={(event) => setText((event.target as HTMLInputElement).value)}
+        invalid={Boolean(zodErrors.text)}
+        error={zodErrors.text?.[0]}
+        placeholder="Text"
         disabled={status === "loading"}
         required
       />
-      <Input
-        id="form-text-2-sample"
-        label="Text 2"
-        name="text2"
-        value={text2}
-        onInput={(event) => setText2((event.target as HTMLInputElement).value)}
-        invalid={Boolean(zodErrors.text2)}
-        error={zodErrors.text2?.[0]}
-        placeholder="Text 2"
+      <Select
+        id="form-select-sample"
+        label="Select"
+        name="select"
+        value={selectValue}
+        onChange={(event: Event) => setSelectValue(getSelect(event))}
+        invalid={Boolean(zodErrors.select)}
+        error={zodErrors.select?.[0]}
         disabled={status === "loading"}
         required
-      />
+      >
+        <option value="">Select an option</option>
+        {formSelectOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </Select>
       <Button type="submit" disabled={status === "loading"}>
         {status === "loading" ? <Spinner /> : "Submit"}
       </Button>

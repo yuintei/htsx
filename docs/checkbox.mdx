@@ -1,0 +1,83 @@
+export const title = "Checkbox";
+export const description = "Checkbox component for Hono JSX";
+export const published = "2026-04-30";
+
+import { CheckboxSample } from "/src/components/ui/checkbox";
+
+## Examples
+
+<CheckboxSample />
+
+```tsx
+// Single
+<Checkbox id="check" name="check" label="Check" />
+
+// Required / Error Message
+<Checkbox
+  id="required-error"
+  name="terms"
+  label="Accept terms"
+  required
+  invalid
+  error="Please accept terms."
+/>
+
+// Multiple
+<fieldset>
+  <legend>Skills</legend>
+  <Checkbox id="frontend" name="tags" value="frontend" label="Frontend" />
+  <Checkbox id="backend" name="tags" value="backend" label="Backend" />
+  <Checkbox id="infra" name="tags" value="infra" label="Infra" />
+</fieldset>
+```
+
+## Code
+
+```tsx title="ui/checkbox.tsx"
+import type { Child, JSX } from "hono/jsx";
+import { c } from "./c";
+
+export function Checkbox({
+  id,
+  label,
+  invalid,
+  error,
+  required,
+  class: custom,
+  ...props
+}: Omit<JSX.IntrinsicElements["input"], "type"> & {
+  label?: Child;
+  invalid?: boolean;
+  error?: string;
+}) {
+  const isInvalid = invalid || Boolean(error);
+  const errorId = id && error ? `${id}-error` : undefined;
+
+  return (
+    <div class="flex flex-col">
+      <label class="flex w-fit cursor-pointer items-center gap-2 has-disabled:cursor-not-allowed has-disabled:opacity-50">
+        <input
+          id={id}
+          type="checkbox"
+          required={required}
+          aria-invalid={isInvalid || undefined}
+          aria-describedby={errorId}
+          class={c("size-4", custom)}
+          {...props}
+        />
+        {label ? (
+          <span>
+            {label}
+            {required ? <span class="ml-1 text-destructive">*</span> : null}
+          </span>
+        ) : null}
+      </label>
+      {error ? (
+        <p id={errorId} class="text-sm text-destructive">
+          {error}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+```
