@@ -50,24 +50,21 @@ export function Input({
 }
 
 export function InputSample() {
-  const email = "invalid";
-  const errors = { email: "Invalid email." };
-
   return (
     <div class="not-prose grid grid-cols-2 gap-4 md:grid-cols-3">
-      <Input id="input-name-sample" label="Name" placeholder="John Doe" />
-      <Input id="input-email-sample" type="email" label="Email" placeholder="you@example.com" />
-      <Input id="input-required-sample" label="Required" placeholder="Required value" required />
-      <Input id="input-disabled-sample" label="Disabled" placeholder="Disabled" disabled />
+      <Input id="email" type="email" label="Email" placeholder="you@example.com" />
+      <Input id="password" type="password" label="Password" placeholder="••••••••" />
       <Input
-        id="input-error-sample"
+        id="error"
         type="email"
         label="Email"
         name="email"
-        value={email}
-        invalid={Boolean(errors.email)}
-        error={errors.email}
+        value="invalid"
+        invalid
+        required
+        error="Enter a valid email."
       />
+      <Input id="disabled" label="Disabled" placeholder="Disabled" disabled />
     </div>
   );
 }

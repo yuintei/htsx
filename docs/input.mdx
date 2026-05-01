@@ -9,28 +9,26 @@ import { InputSample } from "/src/components/ui/input";
 <InputSample />
 
 ```tsx
-// Label
-<Input id="input-name-sample" label="Name" placeholder="John Doe" />
+// Email
+<Input id="email" type="email" label="Email" placeholder="you@example.com" />
 
-// Type
-<Input id="input-email-sample" type="email" label="Email" placeholder="you@example.com" />
+// Password
+<Input id="password" type="password" label="Password" placeholder="••••••••" />
 
-// Required
-<Input id="input-required-sample" label="Required" placeholder="Required value" required />
-
-// Disabled
-<Input id="input-disabled-sample" label="Disabled" placeholder="Disabled" disabled />
-
-// Error
+// Required / Error Message
 <Input
-  id="input-error-sample"
+  id="error"
   type="email"
   label="Email"
   name="email"
   value="invalid"
   invalid
-  error="Enter a valid email address."
+  required
+  error="Enter a valid email."
 />
+
+// Disabled
+<Input id="disabled" label="Disabled" placeholder="Disabled" disabled />
 ```
 
 ## Code

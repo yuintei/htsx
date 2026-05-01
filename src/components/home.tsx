@@ -78,5 +78,12 @@ export function Info() {
 }
 
 export function Faq() {
-  return <Accordion variant="multiple" defaultOpen={["1", "2"]} items={FaqList} />;
+  return (
+    <Accordion
+      class="mx-auto max-w-xl"
+      variant="multiple"
+      defaultOpen={["1", "2"]}
+      items={FaqList}
+    />
+  );
 }

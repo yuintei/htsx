@@ -18,10 +18,10 @@ export function Link({
   return (
     <a
       class={c(
-        "inline-flex w-fit items-center transition hover:opacity-80 active:opacity-70",
+        "inline-flex w-fit items-center font-medium transition hover:opacity-80 active:opacity-70",
         {
-          "font-medium underline-offset-4 hover:underline": variant === "text",
-          "font-medium underline underline-offset-4": variant === "underline",
+          "underline-offset-4 hover:underline": variant === "text",
+          "underline underline-offset-4": variant === "underline",
         },
         buttonStyle &&
           "shrink-0 justify-center rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap select-none",
