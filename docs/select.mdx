@@ -4,23 +4,43 @@ export const published = "2026-04-30";
 
 import { SelectSample } from "/src/components/ui/select";
 
-## Examples
+Use [`Checkbox`](/docs/checkbox) for multiple select. See [`Form`](/docs/form) for best practice.
 
-### SSR
+## Examples
 
 <SelectSample />
 
 ```tsx
-// Native validation: required + empty value lets the browser block submit
-<Select id="country" name="country" label="Country" required>
-  <option value="" selected>Select a country</option>
+// Simple
+<Select id="theme" name="theme" label="Theme">
+  <option value="system" selected>
+    System
+  </option>
+  <option value="light">Light</option>
+  <option value="dark">Dark</option>
+</Select>
+
+// Required / Error Message
+<Select
+  id="country"
+  name="country"
+  label="Country"
+  invalid
+  error="Select a country."
+  required
+>
+  <option value="" selected>
+    Select a country
+  </option>
   <option value="jp">Japan</option>
   <option value="us">United States</option>
 </Select>
 
-// Grouped options
+// Grouped
 <Select id="timezone" name="timezone" label="Timezone">
-  <option value="" selected>Select a timezone</option>
+  <option value="" selected>
+    Select a timezone
+  </option>
   <optgroup label="Asia">
     <option value="asia-tokyo">Tokyo</option>
     <option value="asia-seoul">Seoul</option>
@@ -31,18 +51,12 @@ import { SelectSample } from "/src/components/ui/select";
   </optgroup>
 </Select>
 
-// Error
-<Select id="role" label="Role" invalid error="Select a role." required>
-  <option value="" selected>Select a role</option>
-  <option value="admin">Admin</option>
-  <option value="member">Member</option>
+// Disabled
+<Select id="disabled" label="Disabled" disabled>
+  <option>Disabled</option>
 </Select>
 
 ```
-
-`Select` is for single selection. For multiple selection, use `Checkbox`.
-
-For submit handling, validation, and preserving state after errors, see the form example.
 
 ## Code
 
@@ -84,8 +98,7 @@ export function Select({
         class={c(
           "h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm transition disabled:cursor-not-allowed disabled:opacity-50 dark:bg-muted",
           {
-            "border-destructive focus-visible:border-destructive focus-visible:ring-destructive/30":
-              isInvalid,
+            "border-destructive": isInvalid,
           },
           custom,
         )}

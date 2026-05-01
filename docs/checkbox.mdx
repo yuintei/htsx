@@ -10,25 +10,25 @@ import { CheckboxSample } from "/src/components/ui/checkbox";
 
 ```tsx
 // Single
-<Checkbox id="newsletter" name="newsletter" label="Newsletter" />
+<Checkbox id="check" name="check" label="Check" />
 
-// Required
-<Checkbox id="terms" name="terms" label="Accept terms" required />
+// Required / Error Message
+<Checkbox
+  id="required-error"
+  name="terms"
+  label="Accept terms"
+  required
+  invalid
+  error="Please accept terms."
+/>
 
-// Error
-<Checkbox id="terms-error" name="terms" label="Accept terms" invalid error="Accept terms." />
-
-// Multiple values in an SSR form
+// Multiple
 <fieldset>
-  <legend>Tags</legend>
-  <Checkbox id="tag-frontend" name="tags" value="frontend" label="Frontend" />
-  <Checkbox id="tag-backend" name="tags" value="backend" label="Backend" />
-  <Checkbox id="tag-infra" name="tags" value="infra" label="Infra" />
+  <legend>Skills</legend>
+  <Checkbox id="frontend" name="tags" value="frontend" label="Frontend" />
+  <Checkbox id="backend" name="tags" value="backend" label="Backend" />
+  <Checkbox id="infra" name="tags" value="infra" label="Infra" />
 </fieldset>
-
-// Checkboxes with the same name submit one value per checked item.
-// Validate "at least one" in server or client code.
-// Do not add required to every item unless every item must be checked.
 ```
 
 ## Code
@@ -54,8 +54,8 @@ export function Checkbox({
   const errorId = id && error ? `${id}-error` : undefined;
 
   return (
-    <div class="flex flex-col gap-1">
-      <label class="flex w-fit cursor-pointer items-center gap-2 text-sm has-disabled:cursor-not-allowed has-disabled:opacity-50">
+    <div class="flex flex-col">
+      <label class="flex w-fit cursor-pointer items-center gap-2 has-disabled:cursor-not-allowed has-disabled:opacity-50">
         <input
           id={id}
           type="checkbox"

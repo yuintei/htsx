@@ -35,8 +35,7 @@ export function Select({
         class={c(
           "h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm transition disabled:cursor-not-allowed disabled:opacity-50 dark:bg-muted",
           {
-            "border-destructive focus-visible:border-destructive focus-visible:ring-destructive/30":
-              isInvalid,
+            "border-destructive": isInvalid,
           },
           custom,
         )}
@@ -56,21 +55,28 @@ export function Select({
 export function SelectSample() {
   return (
     <div class="not-prose grid grid-cols-2 gap-4 md:grid-cols-3">
-      <Select id="select-theme-sample" name="theme" label="Theme">
+      <Select id="theme" name="theme" label="Theme">
         <option value="system" selected>
           System
         </option>
         <option value="light">Light</option>
         <option value="dark">Dark</option>
       </Select>
-      <Select id="select-country-sample" name="country" label="Country" required>
+      <Select
+        id="country"
+        name="country"
+        label="Country"
+        invalid
+        error="Select a country."
+        required
+      >
         <option value="" selected>
           Select a country
         </option>
         <option value="jp">Japan</option>
         <option value="us">United States</option>
       </Select>
-      <Select id="select-timezone-sample" name="timezone" label="Timezone">
+      <Select id="timezone" name="timezone" label="Timezone">
         <option value="" selected>
           Select a timezone
         </option>
@@ -83,15 +89,8 @@ export function SelectSample() {
           <option value="america-los-angeles">Los Angeles</option>
         </optgroup>
       </Select>
-      <Select id="select-disabled-sample" label="Disabled" disabled>
+      <Select id="disabled" label="Disabled" disabled>
         <option>Disabled</option>
-      </Select>
-      <Select id="select-error-sample" label="Role" invalid error="Select a role." required>
-        <option value="" selected>
-          Select a role
-        </option>
-        <option value="admin">Admin</option>
-        <option value="member">Member</option>
       </Select>
     </div>
   );

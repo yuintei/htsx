@@ -18,7 +18,7 @@ export function Checkbox({
   const errorId = id && error ? `${id}-error` : undefined;
 
   return (
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col">
       <label class="flex w-fit cursor-pointer items-center gap-2 has-disabled:cursor-not-allowed has-disabled:opacity-50">
         <input
           id={id}
@@ -48,24 +48,21 @@ export function Checkbox({
 export function CheckboxSample() {
   return (
     <div class="not-prose grid gap-4 md:grid-cols-2">
-      <div class="flex flex-col gap-3">
-        <Checkbox id="checkbox-newsletter-sample" name="newsletter" label="Newsletter" />
-        <Checkbox id="checkbox-terms-sample" name="terms" label="Accept terms" required />
-        <Checkbox
-          id="checkbox-error-sample"
-          name="terms"
-          label="Accept terms"
-          invalid
-          error="Accept terms."
-        />
-        <Checkbox id="checkbox-disabled-sample" label="Disabled" disabled />
-      </div>
-
-      <fieldset class="flex flex-col gap-2">
-        <legend class="text-sm font-medium">Tags</legend>
-        <Checkbox id="checkbox-tag-frontend-sample" name="tags" value="frontend" label="Frontend" />
-        <Checkbox id="checkbox-tag-backend-sample" name="tags" value="backend" label="Backend" />
-        <Checkbox id="checkbox-tag-infra-sample" name="tags" value="infra" label="Infra" />
+      <Checkbox id="check" name="check" label="Check" />
+      <Checkbox
+        id="required-error"
+        name="terms"
+        label="Accept terms"
+        required
+        invalid
+        error="Please accept terms."
+      />
+      <Checkbox id="checkbox-disabled-sample" label="Disabled" disabled />
+      <fieldset class="flex flex-col gap-1">
+        <legend class="font-bold">Skills</legend>
+        <Checkbox id="frontend" name="tags" value="frontend" label="Frontend" />
+        <Checkbox id="backend" name="tags" value="backend" label="Backend" />
+        <Checkbox id="infra" name="tags" value="infra" label="Infra" />
       </fieldset>
     </div>
   );

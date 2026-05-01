@@ -22,13 +22,12 @@ const submitRoute = app.post(
     // const { text, select } = c.req.valid("json");
     // try {
     //   await db.insert(form).values({ text, select });
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    return c.json({ message: "ok" }, 200);
     // } catch (e) {
     //   console.error("Failed:", e);
     //   return c.json({ message: "Failed" }, 503);
     // }
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    return c.json({ message: "ok" }, 200);
   },
 );
 

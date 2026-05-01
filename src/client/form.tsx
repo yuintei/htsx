@@ -22,12 +22,6 @@ type ZodErrors = {
   select?: string[];
 };
 
-const STATUS_MESSAGES: Partial<Record<Status, string>> = {
-  success: "Submitted.",
-  error_zod: "Invalid input.",
-  error: "Server error.",
-};
-
 const getSelect = (event: Event) =>
   (event.target as HTMLSelectElement).value as FormSchemaType["select"];
 
@@ -56,20 +50,20 @@ function FormSample() {
             text: data.fieldErrors?.text,
             select: data.fieldErrors?.select,
           });
-          toast({ status: "error", message: STATUS_MESSAGES.error_zod ?? "" });
+          toast({ status: "error", message: "Invalid input." });
           return;
         }
         setStatus("error");
-        toast({ status: "error", message: STATUS_MESSAGES.error ?? "" });
+        toast({ status: "error", message: "Error" });
         return;
       }
       setStatus("success");
       setText("");
       setSelectValue("");
-      toast({ status: "success", message: STATUS_MESSAGES.success ?? "" });
+      toast({ status: "success", message: "Submitted." });
     } catch {
       setStatus("error");
-      toast({ status: "error", message: STATUS_MESSAGES.error ?? "" });
+      toast({ status: "error", message: "Error" });
     }
   };
 
@@ -141,20 +135,20 @@ function FormSampleMini() {
             text: data.fieldErrors?.text,
             select: data.fieldErrors?.select,
           });
-          toast({ status: "error", message: STATUS_MESSAGES.error_zod ?? "" });
+          toast({ status: "error", message: "Invalid input." });
           return;
         }
         setStatus("error");
-        toast({ status: "error", message: STATUS_MESSAGES.error ?? "" });
+        toast({ status: "error", message: "Error" });
         return;
       }
       setStatus("success");
       setText("");
       setSelectValue("");
-      toast({ status: "success", message: STATUS_MESSAGES.success ?? "" });
+      toast({ status: "success", message: "Submitted." });
     } catch {
       setStatus("error");
-      toast({ status: "error", message: STATUS_MESSAGES.error ?? "" });
+      toast({ status: "error", message: "Error" });
     }
   };
 

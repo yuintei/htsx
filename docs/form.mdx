@@ -13,9 +13,9 @@ export const published = "2026-04-30";
 
 ## How it works
 
-1. Submit with blank (client validation with `type` and `required`)
-2. Submit with 1 word (zod validation, error message, keep form state)
-3. Submit with 2 words (loading spinner, success toast, clear form state)
+1. Submit with no word and no select (client validation with `type` and `required`)
+2. Submit with 1 word and Option A (zod validation, error message, keep form state)
+3. Submit with 2 words and Option A (loading spinner, success toast, clear form state)
 
 ## Code
 
@@ -41,16 +41,14 @@ const submitRoute = app.post(
     }
   }),
   async (c) => {
-    // const { text, select } = c.req.valid("json");
-    // try {
-    //   await db.insert(form).values({ text, select });
-    // } catch (e) {
-    //   console.error("Failed:", e);
-    //   return c.json({ message: "Failed" }, 503);
-    // }
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    return c.json({ message: "ok" }, 200);
+    const { text, select } = c.req.valid("json");
+    try {
+      await db.insert(form).values({ text, select });
+      return c.json({ message: "ok" }, 200);
+    } catch (e) {
+      console.error("Failed:", e);
+      return c.json({ message: "Failed" }, 503);
+    }
   },
 );
 
@@ -85,12 +83,6 @@ type ZodErrors = {
   select?: string[];
 };
 
-const STATUS_MESSAGES: Partial<Record<Status, string>> = {
-  success: "Submitted.",
-  error_zod: "Invalid input.",
-  error: "Server error.",
-};
-
 const getSelect = (event: Event) =>
   (event.target as HTMLSelectElement).value as FormSchemaType["select"];
 
@@ -119,20 +111,20 @@ function FormSample() {
             text: data.fieldErrors?.text,
             select: data.fieldErrors?.select,
           });
-          toast({ status: "error", message: STATUS_MESSAGES.error_zod ?? "" });
+          toast({ status: "error", message: "Invalid input." });
           return;
         }
         setStatus("error");
-        toast({ status: "error", message: STATUS_MESSAGES.error ?? "" });
+        toast({ status: "error", message: "Error" });
         return;
       }
       setStatus("success");
       setText("");
       setSelectValue("");
-      toast({ status: "success", message: STATUS_MESSAGES.success ?? "" });
+      toast({ status: "success", message: "Submitted." });
     } catch {
       setStatus("error");
-      toast({ status: "error", message: STATUS_MESSAGES.error ?? "" });
+      toast({ status: "error", message: "Error" });
     }
   };
 
