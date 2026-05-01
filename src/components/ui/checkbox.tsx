@@ -26,11 +26,10 @@ export function Checkbox({
           required={required}
           aria-invalid={isInvalid || undefined}
           aria-describedby={errorId}
-          class={c("size-4", custom)}
           {...props}
         />
         {label ? (
-          <span>
+          <span class={c(custom)}>
             {label}
             {required ? <span class="ml-1 text-destructive">*</span> : null}
           </span>

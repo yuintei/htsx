@@ -96,17 +96,25 @@ export function List() {
         </div>
       </Box>
       <Box title="Checkbox" href="/docs/checkbox">
-        <fieldset class="flex flex-col gap-2">
-          <legend class="text-sm font-medium">Tags</legend>
+        <div class="not-prose grid grid-cols-2 gap-4">
+          <Checkbox id="check" name="check" label="Check" class="text-xs" />
           <Checkbox
-            id="checkbox-list-frontend"
-            name="tags"
-            value="frontend"
-            label="Frontend"
+            id="required-error"
+            name="terms"
+            label="Accept terms"
+            required
+            invalid
+            error="Please accept terms."
+            class="text-xs"
           />
-          <Checkbox id="checkbox-list-backend" name="tags" value="backend" label="Backend" />
-          <Checkbox id="checkbox-list-infra" name="tags" value="infra" label="Infra" />
-        </fieldset>
+          <Checkbox id="checkbox-disabled-sample" label="Disabled" class="text-xs" disabled />
+          <fieldset class="flex flex-col gap-1">
+            <legend class="text-xs font-bold">Skills</legend>
+            <Checkbox id="frontend" name="tags" value="frontend" label="Frontend" class="text-xs" />
+            <Checkbox id="backend" name="tags" value="backend" label="Backend" class="text-xs" />
+            <Checkbox id="infra" name="tags" value="infra" label="Infra" class="text-xs" />
+          </fieldset>
+        </div>
       </Box>
       <Box title="Dropdown" href="/docs/dropdown">
         <div class="not-prose flex flex-col gap-4">
@@ -446,20 +454,44 @@ export function List() {
         </div>
       </Box>
       <Box title="Select" href="/docs/select">
-        <div class="grid gap-3">
-          <Select id="select-list-country" name="country" label="Country" required>
+        <div class="not-prose grid grid-cols-2 gap-4">
+          <Select id="theme" name="theme" label="Theme" class="h-8 text-xs">
+            <option value="system" selected>
+              System
+            </option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </Select>
+          <Select
+            id="country"
+            name="country"
+            label="Country"
+            invalid
+            error="Select a country."
+            required
+            class="h-8 text-xs"
+          >
             <option value="" selected>
               Select a country
             </option>
             <option value="jp">Japan</option>
             <option value="us">United States</option>
           </Select>
-          <Select id="select-list-role" name="role" label="Role" invalid error="Select a role.">
+          <Select id="timezone" name="timezone" label="Timezone" class="h-8 text-xs">
             <option value="" selected>
-              Select a role
+              Select a timezone
             </option>
-            <option value="admin">Admin</option>
-            <option value="member">Member</option>
+            <optgroup label="Asia">
+              <option value="asia-tokyo">Tokyo</option>
+              <option value="asia-seoul">Seoul</option>
+            </optgroup>
+            <optgroup label="America">
+              <option value="america-new-york">New York</option>
+              <option value="america-los-angeles">Los Angeles</option>
+            </optgroup>
+          </Select>
+          <Select id="disabled" label="Disabled" class="h-8 text-xs" disabled>
+            <option>Disabled</option>
           </Select>
         </div>
       </Box>
