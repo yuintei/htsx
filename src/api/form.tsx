@@ -4,22 +4,24 @@ import * as z from "zod";
 
 const app = new Hono();
 
-const schema = z.object({
-  text1: z.string().trim().min(2, "Text 1 must be at least 2 characters."),
-  text2: z.string().trim().min(2, "Text 2 must be at least 2 characters."),
+const formSelectOptions = ["option-a", "option-b"] as const;
+
+const formSchema = z.object({
+  text: z.string().trim().min(2, "Text must be at least 2 characters."),
+  select: z.enum(formSelectOptions, "Select an option."),
 });
 
 const submitRoute = app.post(
   "/submit",
-  zValidator("json", schema, (result, c) => {
+  zValidator("json", formSchema, (result, c) => {
     if (!result.success) {
       return c.json(z.flattenError(result.error), 400);
     }
   }),
   async (c) => {
-    // const { text1, text2 } = c.req.valid("json");
+    // const { text, select } = c.req.valid("json");
     // try {
-    //   await db.insert(form).values({ text1, text2 });
+    //   await db.insert(form).values({ text, select });
     // } catch (e) {
     //   console.error("Failed:", e);
     //   return c.json({ message: "Failed" }, 503);
@@ -31,5 +33,6 @@ const submitRoute = app.post(
 );
 
 export type SubmitApiType = typeof submitRoute;
+export type FormSchemaType = z.infer<typeof formSchema>;
 
 export default app;

@@ -1,14 +1,16 @@
 import type { Child, JSX } from "hono/jsx";
 import { Accordion } from "./ui/accordion";
 import { Button } from "./ui/button";
+import { Checkbox } from "./ui/checkbox";
 import { c } from "./ui/c";
 import { Dropdown } from "./ui/dropdown";
 import { ChevronRight, Copy, ExternalLink, ThumbsUp } from "./ui/icons";
+import { Input } from "./ui/input";
 import { Link } from "./ui/link";
 import { Popover } from "./ui/popover";
+import { Select } from "./ui/select";
 import { Spinner } from "./ui/spinner";
 import { Tab } from "./ui/tab";
-import { Input } from "./ui/input";
 
 function Box({
   title,
@@ -92,6 +94,19 @@ export function List() {
             Custom
           </Button>
         </div>
+      </Box>
+      <Box title="Checkbox" href="/docs/checkbox">
+        <fieldset class="flex flex-col gap-2">
+          <legend class="text-sm font-medium">Tags</legend>
+          <Checkbox
+            id="checkbox-list-frontend"
+            name="tags"
+            value="frontend"
+            label="Frontend"
+          />
+          <Checkbox id="checkbox-list-backend" name="tags" value="backend" label="Backend" />
+          <Checkbox id="checkbox-list-infra" name="tags" value="infra" label="Infra" />
+        </fieldset>
       </Box>
       <Box title="Dropdown" href="/docs/dropdown">
         <div class="not-prose flex flex-col gap-4">
@@ -428,6 +443,24 @@ export function List() {
               </div>
             </div>
           </Popover>
+        </div>
+      </Box>
+      <Box title="Select" href="/docs/select">
+        <div class="grid gap-3">
+          <Select id="select-list-country" name="country" label="Country" required>
+            <option value="" selected>
+              Select a country
+            </option>
+            <option value="jp">Japan</option>
+            <option value="us">United States</option>
+          </Select>
+          <Select id="select-list-role" name="role" label="Role" invalid error="Select a role.">
+            <option value="" selected>
+              Select a role
+            </option>
+            <option value="admin">Admin</option>
+            <option value="member">Member</option>
+          </Select>
         </div>
       </Box>
       <Box title="Spinner" href="/docs/spinner">
