@@ -11,6 +11,7 @@ import { Popover } from "./ui/popover";
 import { Select } from "./ui/select";
 import { Spinner } from "./ui/spinner";
 import { Tab } from "./ui/tab";
+import { Textarea } from "./ui/textarea";
 
 function Box({
   title,
@@ -376,6 +377,26 @@ export function List() {
             },
           ]}
         />
+      </Box>
+      <Box title="Textarea" href="/docs/textarea">
+        <div class="not-prose grid grid-cols-2 gap-4">
+          <Textarea
+            id="bio"
+            name="bio"
+            label="Bio"
+            rows={3}
+            placeholder="Tell us about yourself..."
+          />
+          <Textarea
+            id="textarea-error"
+            name="comment"
+            label="Comment"
+            value="Too short"
+            invalid
+            required
+            error="Comment must be at least 20 characters."
+          />
+        </div>
       </Box>
       <Box title="Toast" href="/docs/toast">
         <div id="toast-sample-root"></div>
